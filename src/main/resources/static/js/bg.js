@@ -15,8 +15,8 @@ var saveLocation = function(position){
         //$('#locationForm').serializeArray()
         name: $('#locationForm input[name=name]').val(),
         rating: $('#locationForm select[name=rating]').val(),
-        latitude: position.coords.latitude * 10000,
-        longitude:position.coords.longitude * 10000
+        latitude: position.coords.latitude * 100000,
+        longitude:position.coords.longitude * 100000
     };
 
     var that = this;

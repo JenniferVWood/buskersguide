@@ -18,17 +18,20 @@
             <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
         </div>
         <div class="masthead-nav" role="navigation">
-            <ul>
-                <li><a href="/">Login</a>
-                </li>
-            </ul>
+            [#if !userName??]
+                <ul>
+                    <li><a href="/">Login</a>
+                    </li>
+                </ul>
+            [#else]
+                <!--- masthead -->
+                <div class="wrapper">
+                    [#nested]
+                </div>
+                <!-- /wrapper -->
+            [/#if]
         </div>
     </div>
-    <!--- masthead -->
-    <div class="wrapper">
-    [#nested]
-    </div>
-    <!-- /wrapper -->
 </body>
 </html>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
