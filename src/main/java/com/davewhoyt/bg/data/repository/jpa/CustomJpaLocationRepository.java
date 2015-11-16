@@ -1,6 +1,7 @@
 package com.davewhoyt.bg.data.repository.jpa;
 
 import com.davewhoyt.bg.data.model.Location;
+import com.davewhoyt.bg.data.repository.CustomLocationRepository;
 import com.davewhoyt.bg.data.repository.LocationRepository;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,7 @@ import java.util.List;
  * In the end, this might be solved by storing the cached computed value in the Location table.
  */
 @Repository
-public class CustomJpaLocationRepository implements LocationRepository {
+public class CustomJpaLocationRepository implements CustomLocationRepository {
     private static final String RESULT_SET_MAPPING = "LocationMapping";
 
     private static final String BASE_QUERY = "select\n" +

@@ -7,7 +7,7 @@ import java.util.List;
 /**
  * Created by david on 11/10/15.
  */
-public interface LocationRepository {
+public interface CustomLocationRepository {
     Location findByLocationId(Long locationId);
 
     /**
@@ -18,4 +18,5 @@ public interface LocationRepository {
      */
     Location findByLatitudeAndLongitude(Integer latitude, Integer Longitude);
 
+    List<Location> list(int offset, int limit);
 }
