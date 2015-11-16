@@ -1,14 +1,4 @@
 
-//$(document).ready(function () {
-//    //alert("hello");
-//    // assign listeners to vote buttons.
-//    $('#createLocation').submit(
-//        function (o) {
-//            onCreateLocation(o);
-//            o.preventDefault();
-//        }
-//    )
-//});
 
 /**
  * Click event handler for createLocation button.
@@ -17,7 +7,7 @@
  *
  * @param o Event.
  */
-function onCreateLocation(o) {
+var saveLocation = function(position){
     // submit AJAX
 
     var foo = $('#locationForm');
@@ -25,8 +15,8 @@ function onCreateLocation(o) {
         //$('#locationForm').serializeArray()
         name: $('#locationForm input[name=name]').val(),
         rating: $('#locationForm select[name=rating]').val(),
-        latitude: $('#locationForm input[name=latitude]').val(),
-        longitude: $('#locationForm input[name=longitude]').val()
+        latitude: position.coords.latitude * 10000,
+        longitude:position.coords.longitude * 10000
     };
 
     var that = this;
@@ -44,13 +34,30 @@ function onCreateLocation(o) {
     });
 
     return false;
-    // reload page
-    //   - if we had time to get fancy we'd load some JSON and rebuild part of the page.
-    //location.reload(true); // true => load from server instead of cache
-}
+};
 
-function onSuccess() {
+
+var onSubmitLocation = function() {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(saveLocation, function() {alert("error");}, options);
+    } else {
+        alert("Sorry, you need to enable GPS in order to submit a locaiton.");
+    }
+
+    return false;
+};
+
+
+
+
+var onSuccess = function() {
     //location.reload(true);
-}
+};
 
 

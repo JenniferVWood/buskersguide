@@ -71,13 +71,13 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
     public List<Location> list(int offset, int limit) {
         String sql = BASE_QUERY
                 + GROUP_BY
-                + " limit ?"
-                + " offset ?";
+                + " offset ?"
+                + " limit ?";
 
         Query q = entityManager.createNativeQuery(sql, RESULT_SET_MAPPING);
         q.setParameter(1, offset);
         q.setParameter(2, limit);
-        return (List<Location>)q.getResultList();
+        return returnList(q);
     }
 
 

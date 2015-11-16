@@ -3,12 +3,14 @@ package com.davewhoyt.bg.service;
 import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.Member;
 import com.davewhoyt.bg.data.model.Rating;
+import com.davewhoyt.bg.data.repository.jpa.CustomJpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaRatingRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by david on 11/10/15.
@@ -17,6 +19,7 @@ import javax.inject.Inject;
 public class LocationService {
 
     private JpaLocationRepository locationRepository;
+    private CustomJpaLocationRepository customLocationRepository;
     private JpaRatingRepository ratingRepository;
 
     private RatingService ratingService;
@@ -51,6 +54,10 @@ public class LocationService {
     }
 
 
+    public List<Location> listAll() {
+        List<Location> ret = customLocationRepository.list(0,100);
+        return ret;
+    }
 
     @Inject
     public void setLocationRepository(JpaLocationRepository r) {
@@ -66,5 +73,10 @@ public class LocationService {
     @Inject
     public void setRatingService(RatingService ratingService) {
         this.ratingService = ratingService;
+    }
+
+    @Inject
+    public void setCustomLocationRepository(CustomJpaLocationRepository customLocationRepository) {
+        this.customLocationRepository = customLocationRepository;
     }
 }

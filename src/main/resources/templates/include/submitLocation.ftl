@@ -1,10 +1,7 @@
 [#ftl]
-[#import "spring.ftl" as spring/]
 [#assign xhtmlCompliant = true in spring/]
-[#escape x as x?html]
-    [@page.pageTemplate "Buskers Guide"]
     Log a new location:
-    <form id="locationForm" name="locationForm" onSubmit="return onCreateLocation(this)">
+    <form id="locationForm" name="locationForm" onSubmit="return onSubmitLocation(this)">
             Name: <input id="name" name="name" type="text" size="32">
             <br/>Rating:
             <select id="rating" name="rating">
@@ -19,10 +16,8 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            Latitude: <input type="text" size="4" name="latitude"/>
-            Longitude: <input type="text" size="4" name="longitude"/>
+            [#--Latitude: <input type="text" size="4" name="latitude"/>--]
+            [#--Longitude: <input type="text" size="4" name="longitude"/>--]
             <input type="submit" id="createLocation" value="create"/>
         [#--</div>--]
     </form>
-    [/@page.pageTemplate]
-[/#escape]

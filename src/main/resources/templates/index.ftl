@@ -12,8 +12,9 @@
     Hello, ${userName}
 
     <hr/>
-    [#import "include/submitLocation.ftl" as submitLocation]
+    [#include "include/submitLocation.ftl" ]
     <hr/>
 
+    [#include "include/listLocations.ftl" ]
     [/@page.pageTemplate]
 [/#escape]
