@@ -8,6 +8,9 @@ import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
+
+import java.math.BigDecimal;
+
 import static org.junit.Assert.*;
 /**
  * Created by david on 11/11/15.
@@ -29,8 +32,8 @@ public class LocationServiceTests extends AbstractServiceTest {
         assertEquals("retrieved the same location as saved:", l2.getLocationId(), l1.getLocationId());
 
         Location dupe = new Location();
-        dupe.setLatitude(1);
-        dupe.setLongitude(1);
+        dupe.setLatitude(BigDecimal.ONE);
+        dupe.setLongitude(BigDecimal.ONE);
         dupe.setName("dupe"); //should be ignored
         dupe.setRating(9);
         dupe = locationService.createOrUpdate(dupe, m2);

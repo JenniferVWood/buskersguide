@@ -2,6 +2,7 @@ package com.davewhoyt.bg.data.repository;
 
 import com.davewhoyt.bg.data.model.Location;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -16,7 +17,7 @@ public interface CustomLocationRepository {
      * @param Longitude
      * @return A List of Longitudes near the given coordinates.
      */
-    Location findByLatitudeAndLongitude(Integer latitude, Integer Longitude);
+    Location findByLatitudeAndLongitude(BigDecimal latitude, BigDecimal Longitude);
 
     List<Location> list(int offset, int limit);
 }

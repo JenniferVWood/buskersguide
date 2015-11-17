@@ -15,8 +15,8 @@ var saveLocation = function(position){
         //$('#locationForm').serializeArray()
         name: $('#locationForm input[name=name]').val(),
         rating: $('#locationForm select[name=rating]').val(),
-        latitude: position.coords.latitude * 100000,
-        longitude:position.coords.longitude * 100000
+        latitude: position.coords.latitude,
+        longitude:position.coords.longitude
     };
 
     var that = this;
@@ -57,7 +57,7 @@ var onSubmitLocation = function() {
 
 
 var onSuccess = function() {
-    //location.reload(true);
+    location.reload(true);
 };
 
 

@@ -9,6 +9,8 @@ import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+
 /**
  * Created by david on 11/11/15.
  */
@@ -35,8 +37,8 @@ public class AbstractServiceTest {
         this.m1 = userService.createUser("user1");
         this.m2 = userService.createUser("user2");
         l1 = new Location();
-        l1.setLatitude(1);
-        l1.setLongitude(1);
+        l1.setLatitude(BigDecimal.ONE);
+        l1.setLongitude(BigDecimal.ONE);
         l1.setName("l1");
         l1.setRating(1);
 

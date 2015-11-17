@@ -5,6 +5,7 @@ import com.davewhoyt.bg.data.repository.LocationRepository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -13,6 +14,6 @@ import java.util.List;
 @Repository
 public interface JpaLocationRepository extends CrudRepository<Location, Long>, LocationRepository {
     Location findByLocationId(Long locationId);
-    Location findByLatitudeAndLongitude(Integer latitude, Integer Longitude);
+    Location findByLatitudeAndLongitude(BigDecimal latitude, BigDecimal Longitude);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by david on 11/10/15.
@@ -31,6 +32,18 @@ public class LocationController {
         locationService.createOrUpdate(location, member);
         return "/";
     }
+
+    @RequestMapping("list")
+    public List<Location> listAll() {
+        return locationService.listAll();
+    }
+
+
+    @RequestMapping("list/near/{lattitude}/{longitude}/{radius}")
+    public List<Location> listNear(Integer latitude, Integer longitude, Integer radusInMeters) {
+        return null;
+    }
+
 
     @Inject
     public void setLocationService(LocationService locationService) {

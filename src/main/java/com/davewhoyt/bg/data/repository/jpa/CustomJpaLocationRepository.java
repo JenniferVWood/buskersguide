@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +54,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
 
     // TODO: rename to (and make it work like) 'findNearLatitudeAndLongitude(...)'
     @Override
-    public Location findByLatitudeAndLongitude(Integer latitude, Integer longitude) {
+    public Location findByLatitudeAndLongitude(BigDecimal latitude, BigDecimal longitude) {
         assert latitude != null && longitude != null;
 
         String sql = BASE_QUERY
@@ -81,6 +82,23 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
     }
 
 
+
+    /*
+    http://gis.stackexchange.com/questions/41242/how-to-find-the-nearest-point-from-poi-in-postgis
+    ALTER TABLE places ADD COLUMN geog geography(Point,4326);
+UPDATE places SET geog = ST_MakePoint(longitude, latitude);
+Now select the nearest 10 places that are within 100 kms:
+
+SELECT places.*, ST_Distance(geog, poi)/1000 AS distance_km
+FROM places,
+  (select ST_MakePoint(-90,47)::geography as poi) as poi
+WHERE ST_DWithin(geog, poi, 100000)
+ORDER BY ST_Distance(geog, poi)
+LIMIT 10;
+     */
+
+
+    // convenience functions to handle the funky mapping above
 
     private Location returnSingle(Query q) {
         List<Object[]> results = q.getResultList();

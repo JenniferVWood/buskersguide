@@ -11,7 +11,7 @@ Existing Locations:
     <tr>
         <td>${l.name}</td>
         <td>${l.averageRating}</td>
-        <td><a href="https://www.google.com/maps/preview/@>${l.latitude/100000},${l.longitude/100000},8z">${l.latitude/100000}/${l.longitude/100000}</a></td>
+        <td><a href="https://www.google.com/maps/preview/@>${l.latitude},${l.longitude},8z">${l.latitude}/${l.longitude}</a></td>
     </tr>
     [/#list]
 </table>

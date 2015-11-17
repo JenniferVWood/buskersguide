@@ -1,6 +1,7 @@
 package com.davewhoyt.bg.data.model;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 
 /**
  * The giant blob of annotations that is the SqlResultSetMapping is all in order to get
@@ -28,8 +29,8 @@ public class Location {
     private Long locationId;
 
     @Column private String name;
-    @Column private Integer latitude;
-    @Column private Integer longitude;
+    @Column private BigDecimal latitude;
+    @Column private BigDecimal longitude;
 
     @Transient
     public Double averageRating; // calculated
@@ -60,22 +61,22 @@ public class Location {
     }
 
 
-    public Integer getLatitude() {
+    public BigDecimal getLatitude() {
         return latitude;
     }
 
 
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(BigDecimal latitude) {
         this.latitude = latitude;
     }
 
 
-    public Integer getLongitude() {
+    public BigDecimal getLongitude() {
         return longitude;
     }
 
 
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(BigDecimal longitude) {
         this.longitude = longitude;
     }
 

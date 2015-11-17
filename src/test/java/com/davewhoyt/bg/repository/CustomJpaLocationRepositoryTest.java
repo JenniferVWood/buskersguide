@@ -15,6 +15,7 @@ import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.Assert.*;
@@ -46,8 +47,8 @@ public class CustomJpaLocationRepositoryTest {
         // assume that the standard Spring CrudRepository impl works.
         Location l1 = new Location();
         l1.setName("l1");
-        l1.setLatitude(1);
-        l1.setLongitude(1);
+        l1.setLatitude(BigDecimal.ONE);
+        l1.setLongitude(BigDecimal.ONE);
         jpaLocationRepository.save(l1);
 
         Rating rating = new Rating();
@@ -76,8 +77,8 @@ public class CustomJpaLocationRepositoryTest {
 
         Location l1 = new Location();
         l1.setName("l1");
-        l1.setLatitude(2);
-        l1.setLongitude(2);
+        l1.setLatitude(BigDecimal.valueOf(2));
+        l1.setLongitude(BigDecimal.valueOf(2));
         jpaLocationRepository.save(l1);
 
         Rating rating = new Rating();
@@ -87,8 +88,8 @@ public class CustomJpaLocationRepositoryTest {
 
         Location l2 = new Location();
         l2.setName("l1");
-        l2.setLatitude(2);
-        l2.setLongitude(1);
+        l2.setLatitude(BigDecimal.valueOf(2));
+        l2.setLongitude(BigDecimal.valueOf(2));
         jpaLocationRepository.save(l1);
 
         Rating rating2 = new Rating();
