@@ -86,6 +86,17 @@ var fetchLocationsNearMe = function(position) {
 };
 
 var renderLocationsNearMe = function(o) {
-    var foo = o;
-    alert(o);
+    var html = '';
+    for(var i in o){
+        html += '<tr>'
+        html += '<td>' + o[i].name + '</td>';
+        html += '<td>' + o[i].averageRating + '</td>';
+        html += '<td> <a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z">' + o[i].latitude + '/' + o[i].longitude + '</a></td>';
+        html += '<td>' + o[i].distanceInMeters + '</td>';
+        html += '</tr>';
+    }
+
+
+    var tableContent = $('#locationsNearMeTableEntries');
+    tableContent.html(html);
 };

@@ -109,7 +109,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
                 "  , location.latitude\n" +
                 "  , location.longitude\n" +
                 "  , near_me.distanceinmeters\n" +
-                "  , avg(rating.value)\n" +
+                "  , avg(rating.value) as averageRating\n" +
                 "\n" +
                 "from location\n" +
                 "  inner join near_me on near_me.locationid = location.locationid\n" +
@@ -119,8 +119,8 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
                 " offset ? limit ?"
                 ;
         Query q = entityManager.createNativeQuery(sql, RESULT_SET_MAPPING);
-        q.setParameter(1, latitude); // st_makepoint has latitude first, to honor "x,y" coord convention.
-        q.setParameter(2, longitude);// st_makepoint has latitude first, to honor "x,y" coord convention.
+        q.setParameter(1, longitude); // st_makepoint has latitude first, to honor "x,y" coord convention.
+        q.setParameter(2, latitude);// st_makepoint has latitude first, to honor "x,y" coord convention.
         q.setParameter(3, radiusInMeters);
         q.setParameter(4, offset);
         q.setParameter(5, limit);
