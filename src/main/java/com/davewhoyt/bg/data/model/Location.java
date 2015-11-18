@@ -1,11 +1,14 @@
 package com.davewhoyt.bg.data.model;
 
+//import org.hibernate.annotations.Type;
+//import org.postgis.Point;
+
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 /**
  * The giant blob of annotations that is the SqlResultSetMapping is all in order to get
- * an agregate value in each row returned.  Ultimately this will go away, and become
+ * an aggregate value in each row returned.  Ultimately this will go away, and become
  * a cached computed value in the table.
  */
 @Entity
@@ -19,7 +22,9 @@ import java.math.BigDecimal;
                         @FieldResult(name = "locationId", column = "locationid"),
                         @FieldResult(name = "name", column = "name"),
                         @FieldResult(name = "latitude", column = "latitude"),
-                        @FieldResult(name = "longitude", column = "longitude")}),
+                        @FieldResult(name = "longitude", column = "longitude")
+//                        , @FieldResult(name = "geog", column = "geog")
+                }),
         columns = @ColumnResult(name="averageRating", type = Double.class))
 public class Location {
     @Id
@@ -31,6 +36,10 @@ public class Location {
     @Column private String name;
     @Column private BigDecimal latitude;
     @Column private BigDecimal longitude;
+
+//    @Column
+//    @Type(type="org.hibernate.spatial.GeometryType")
+//    private Point geog;
 
     @Transient
     public Double averageRating; // calculated
@@ -99,5 +108,13 @@ public class Location {
     public void setAverageRating(Double averageRating) {
         this.averageRating = averageRating;
     }
+
+//    public Point getGeog() {
+//        return geog;
+//    }
+//
+//    public void setGeog(Point geog) {
+//        this.geog = geog;
+//    }
 }
 
