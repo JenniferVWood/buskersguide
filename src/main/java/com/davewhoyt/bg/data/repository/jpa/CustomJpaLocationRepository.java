@@ -11,6 +11,7 @@ import javax.persistence.Query;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * I'm not super happy with this strategy -- very verbose and annotation heavy.
@@ -30,7 +31,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
             "  , location.latitude\n" +
             "  , location.longitude\n" +
             "  , avg(rating.value) as \"averagerating\"\n" +
-            "\n" +
+            "  , 0 as distanceinmeters\n" +
             "from location\n" +
             "  inner join rating on location.locationid = rating.locationid\n" ;
 
@@ -85,17 +86,64 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
 
     /*
     http://gis.stackexchange.com/questions/41242/how-to-find-the-nearest-point-from-poi-in-postgis
-    ALTER TABLE places ADD COLUMN geog geography(Point,4326);
-UPDATE places SET geog = ST_MakePoint(longitude, latitude);
-Now select the nearest 10 places that are within 100 kms:
+      */
 
-SELECT places.*, ST_Distance(geog, poi)/1000 AS distance_km
-FROM places,
-  (select ST_MakePoint(-90,47)::geography as poi) as poi
-WHERE ST_DWithin(geog, poi, 100000)
-ORDER BY ST_Distance(geog, poi)
-LIMIT 10;
-     */
+
+    @Override
+    public List<Location> findNearLatitudeAndLongitude(BigDecimal latitude, BigDecimal longitude, Integer radiusInMeters, int offset, int limit) {
+
+        // TODO: Do we want to make this the default query? As in, always return distance to [here]?
+        String sql = "with\n" +
+                "    poi as (\n" +
+                "      select st_makepoint(?, ?) as poi\n" +
+                "  ),\n" +
+                "    near_me as (\n" +
+                "      SELECT locationid\n" +
+                "        , st_distance(geog, poi.poi) as distanceinmeters\n" +
+                "      FROM location, poi\n" +
+                "      WHERE st_dwithin(geog, poi.poi, ?)\n" +
+                "  )\n" +
+                "select\n" +
+                "  location.locationid\n" +
+                "  , location.name\n" +
+                "  , location.latitude\n" +
+                "  , location.longitude\n" +
+                "  , near_me.distanceinmeters\n" +
+                "  , avg(rating.value)\n" +
+                "\n" +
+                "from location\n" +
+                "  inner join near_me on near_me.locationid = location.locationid\n" +
+                "  inner join rating on location.locationid = rating.locationid\n" +
+                "\n" +
+                "group by location.locationid, near_me.distanceinmeters\n" +
+                " offset ? limit ?"
+                ;
+        Query q = entityManager.createNativeQuery(sql, RESULT_SET_MAPPING);
+        q.setParameter(1, latitude); // st_makepoint has latitude first, to honor "x,y" coord convention.
+        q.setParameter(2, longitude);// st_makepoint has latitude first, to honor "x,y" coord convention.
+        q.setParameter(3, radiusInMeters);
+        q.setParameter(4, offset);
+        q.setParameter(5, limit);
+
+
+        List<Location> ret = new ArrayList<>();
+
+        Object o = q.getResultList();
+        List<Object[]> results = (List<Object[]>)q.getResultList();
+
+        // TODO: this is very similar to the convenience method below.
+        // pretty sure we could do this with stream()...each()...map()...collect()
+        results.stream().forEach((record) -> {
+            Location l = (Location)record[0];
+            Double average = (Double)record[1];
+            Double distanceInMeters = (Double)record[2];
+            l.setAverageRating(average);
+            l.setDistanceInMeters(distanceInMeters);
+            ret.add(l);
+        });
+
+        return ret;
+    }
 
 
     // convenience functions to handle the funky mapping above

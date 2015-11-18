@@ -20,4 +20,6 @@ public interface CustomLocationRepository {
     Location findByLatitudeAndLongitude(BigDecimal latitude, BigDecimal Longitude);
 
     List<Location> list(int offset, int limit);
+
+    List<Location> findNearLatitudeAndLongitude(BigDecimal latitude, BigDecimal longitude, Integer radiusInMeters, int offset, int limit);
 }

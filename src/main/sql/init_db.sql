@@ -62,3 +62,9 @@ FOREIGN KEY (locationid) REFERENCES location (locationid)
 );
 CREATE UNIQUE INDEX rating_ratingid_pk ON rating (ratingid);
 CREATE UNIQUE INDEX rating_ratingid_uindex ON rating (ratingid);
+
+
+ALTER TABLE location ADD COLUMN geog geography(Point,4326);
+UPDATE location SET geog = ST_MakePoint(longitude, latitude);
+
+\i trig_location_post_insert.sql;

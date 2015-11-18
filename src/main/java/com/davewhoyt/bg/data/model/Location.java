@@ -1,8 +1,5 @@
 package com.davewhoyt.bg.data.model;
 
-//import org.hibernate.annotations.Type;
-//import org.postgis.Point;
-
 import javax.persistence.*;
 import java.math.BigDecimal;
 
@@ -23,9 +20,9 @@ import java.math.BigDecimal;
                         @FieldResult(name = "name", column = "name"),
                         @FieldResult(name = "latitude", column = "latitude"),
                         @FieldResult(name = "longitude", column = "longitude")
-//                        , @FieldResult(name = "geog", column = "geog")
                 }),
-        columns = @ColumnResult(name="averageRating", type = Double.class))
+        columns = {@ColumnResult(name="averageRating", type = Double.class)
+        , @ColumnResult(name="distanceInMeters", type = Double.class)})
 public class Location {
     @Id
     @GeneratedValue(generator="location_seq")
@@ -37,15 +34,18 @@ public class Location {
     @Column private BigDecimal latitude;
     @Column private BigDecimal longitude;
 
-//    @Column
-//    @Type(type="org.hibernate.spatial.GeometryType")
-//    private Point geog;
-
+    /** calculated by some queries*/
     @Transient
-    public Double averageRating; // calculated
+    public Double averageRating;
 
+    /** calculated by some queries*/
+    @Transient Double distanceInMeters;
+
+
+    /** included in this model because a controller(!) uses this type to record a location+rating */
+    // TODO: violates separation of concerns
     @Transient
-    private Integer rating; // submitted by user
+    private Integer rating;
 
 
 
@@ -109,12 +109,12 @@ public class Location {
         this.averageRating = averageRating;
     }
 
-//    public Point getGeog() {
-//        return geog;
-//    }
-//
-//    public void setGeog(Point geog) {
-//        this.geog = geog;
-//    }
+    public Double getDistanceInMeters() {
+        return distanceInMeters;
+    }
+
+    public void setDistanceInMeters(Double distanceInMeters) {
+        this.distanceInMeters = distanceInMeters;
+    }
 }
 

@@ -1,7 +1,31 @@
+var getGeoData = function(success, failureMessage) {
+    var options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
+    };
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(success, function() {alert("error");}, options);
+    } else {
+        alert(failureMessage);
+    }
+}
 
 
 /**
  * Click event handler for createLocation button.
+ *
+ * Part 1 of 3 functions for creating a location
+ * @returns {boolean}
+ */
+var onSubmitLocation = function() {
+    getGeoData(saveLocation, "Sorry, you need to enable GPS in order to submit a locaiton.")
+    return false;
+};
+
+/**
+ * part 2 of 3 functions for creating locations.
  *
  * Make AJAX POST to record new location.
  *
@@ -26,7 +50,7 @@ var saveLocation = function(position){
         data: JSON.stringify(locationData),
         contentType: "application/json",
         success: function() {
-            that.onSuccess();
+            that.onCreateLocationSuccess();
         },
         error: function(e) {
             alert(e.responseText);
@@ -36,28 +60,32 @@ var saveLocation = function(position){
     return false;
 };
 
-
-var onSubmitLocation = function() {
-    var options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
-    };
-
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(saveLocation, function() {alert("error");}, options);
-    } else {
-        alert("Sorry, you need to enable GPS in order to submit a locaiton.");
-    }
-
-    return false;
-};
-
-
-
-
-var onSuccess = function() {
+/**
+ * part 3 of 3 functions for creating a new location.
+ */
+var onCreateLocationSuccess = function() {
     location.reload(true);
 };
 
 
+
+var onRequestLocationsNearMe = function() {
+    getGeoData(fetchLocationsNearMe, "Sorry, you need to enable GPS in order to find locations near you.")
+};
+
+
+var fetchLocationsNearMe = function(position) {
+    var coords = position.coords
+    $.ajax({
+        dataType: "json",
+        url: "/location/near/" + coords.latitude + "/" + coords.longitude + "/2000",
+        data: undefined,
+        success: renderLocationsNearMe
+    });
+    return false;
+};
+
+var renderLocationsNearMe = function(o) {
+    var foo = o;
+    alert(o);
+};

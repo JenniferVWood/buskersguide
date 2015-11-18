@@ -6,12 +6,10 @@ import com.davewhoyt.bg.service.LocationService;
 import com.davewhoyt.bg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -39,9 +37,19 @@ public class LocationController {
     }
 
 
-    @RequestMapping("list/near/{lattitude}/{longitude}/{radius}")
-    public List<Location> listNear(Integer latitude, Integer longitude, Integer radusInMeters) {
-        return null;
+    @RequestMapping(value = "near/{latitude}/{longitude}/{radiusInMeters}", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Location> listNear(@PathVariable("latitude") Double latitude,
+                                   @PathVariable("longitude") Double longitude,
+                                   @PathVariable("radiusInMeters") Integer radusInMeters) {
+
+//        Double lat = Double.parseDouble(latitude);
+//        Double lon = Double.parseDouble(longitude);
+//        Integer rad = Integer.parseInt(radusInMeters);
+        return locationService.findNearLatitudeAndLongitude(
+                BigDecimal.valueOf(latitude),
+                BigDecimal.valueOf(longitude),
+                radusInMeters, 0, 100);
     }
 
 

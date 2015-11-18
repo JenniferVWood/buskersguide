@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.math.BigDecimal;
 import java.util.List;
 
 /**
@@ -54,9 +55,27 @@ public class LocationService {
     }
 
 
+    @Transactional
     public List<Location> listAll() {
         List<Location> ret = customLocationRepository.list(0,100);
         return ret;
+    }
+
+
+    /**
+     * This is a potentially expensive operation, though some effort has been made to optimize the query to
+     * run the most expensive operations as few times as possible.
+     *
+     * @param latitude
+     * @param longitude
+     * @param radiusInMeters
+     * @param offset
+     * @param limit
+     * @return List of Locations that match the specified parameters.
+     */
+    @Transactional
+    public List<Location> findNearLatitudeAndLongitude(BigDecimal latitude, BigDecimal longitude, Integer radiusInMeters, int offset, int limit) {
+        return customLocationRepository.findNearLatitudeAndLongitude(latitude,longitude,radiusInMeters,offset,limit);
     }
 
     @Inject

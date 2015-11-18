@@ -12,7 +12,7 @@ public class Member implements Logging {
 
     @Id
     @GeneratedValue(generator="user_seq")
-    @SequenceGenerator(name="user_seq", sequenceName = "user_userid_seq")
+    @SequenceGenerator(name="user_seq", sequenceName = "member_userid_seq")
     @Column(name="userid")
     private Long userId;
 
