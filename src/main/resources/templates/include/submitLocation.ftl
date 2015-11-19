@@ -16,10 +16,7 @@
                 <option value="9">9</option>
                 <option value="10">10</option>
             </select>
-            [#--Latitude: <input type="text" size="4" name="latitude"/>--]
-            [#--Longitude: <input type="text" size="4" name="longitude"/>--]
             <input type="submit" id="createLocation" value="create"/>
-        [#--</div>--]
     </form>
 
 <p/><p/>
@@ -41,6 +38,5 @@ Rate a new location manually:
     </select>
 Latitude: <input type="text" size="4" name="latitude"/>
 Longitude: <input type="text" size="4" name="longitude"/>
-    <input type="submit" id="createLocation" value="create"/>
-[#--</div>--]
+    <input type="submit" id="createLocation" value="rate"/>
 </form>

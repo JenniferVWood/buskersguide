@@ -24,7 +24,7 @@ public class LocationController {
 
     private LocationService locationService;
 
-    @RequestMapping(value = "create", method = RequestMethod.POST)
+    @RequestMapping(value = "rate", method = RequestMethod.POST)
     public String createLocation(@CookieValue(value = "userName") String userName, @RequestBody Location location) {
         Member member = userService.findByUserName(userName);
         locationService.createOrUpdate(location, member);
