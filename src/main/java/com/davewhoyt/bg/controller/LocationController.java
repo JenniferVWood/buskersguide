@@ -41,15 +41,12 @@ public class LocationController {
     @ResponseBody
     public List<Location> listNear(@PathVariable("latitude") Double latitude,
                                    @PathVariable("longitude") Double longitude,
-                                   @PathVariable("radiusInMeters") Integer radusInMeters) {
+                                   @PathVariable("radiusInMeters") Integer radiusInMeters) {
 
-//        Double lat = Double.parseDouble(latitude);
-//        Double lon = Double.parseDouble(longitude);
-//        Integer rad = Integer.parseInt(radusInMeters);
         return locationService.findNearLatitudeAndLongitude(
                 BigDecimal.valueOf(latitude),
                 BigDecimal.valueOf(longitude),
-                radusInMeters, 0, 100);
+                radiusInMeters, 0, 100);
     }
 
 

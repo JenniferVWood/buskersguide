@@ -1,3 +1,7 @@
+$( document ).ready(function(){
+   onRequestLocationsNearMe();
+});
+
 var getGeoData = function(success, failureMessage) {
     var options = {
         enableHighAccuracy: true,
@@ -86,17 +90,18 @@ var fetchLocationsNearMe = function(position) {
 };
 
 var renderLocationsNearMe = function(o) {
-    var html = '';
+    var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
-        html += '<tr>'
-        html += '<td>' + o[i].name + '</td>';
+        html += '<tr>';
+        html += '<td> <a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z">' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
-        html += '<td> <a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z">' + o[i].latitude + '/' + o[i].longitude + '</a></td>';
-        html += '<td>' + o[i].distanceInMeters + '</td>';
+        html += '<td>' + o[i].distanceInMeters + ' meters</td>';
         html += '</tr>';
     }
+    html += '</table>';
 
 
-    var tableContent = $('#locationsNearMeTableEntries');
-    tableContent.html(html);
+    //var tableContent = $('#locationsNearMeTableEntries');
+    //tableContent.html(html);
+    $(html).appendTo('#locationsNearMeTableEntries');
 };

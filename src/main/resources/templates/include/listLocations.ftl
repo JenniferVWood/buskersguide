@@ -3,21 +3,11 @@
 [#escape x as x?html]
 
 <p/>
-<a onclick="onRequestLocationsNearMe()">get locations near me</a>
-<table>
-    <th>name</th>
-    <th>rating</th>
-    <th>coordinates</th>
-    <th>distance</th>
-    <div id="locationsNearMeTableEntries">
-        <tr>
-            <td>no name</td>
-            <td>no rating</td>
-            <td>no coordinates</td>
-            <td>no distance</td>
-        </tr>
-    </div>
+<b><a onclick="onRequestLocationsNearMe()">Locations Near Me</a></b>
+<div id="locationsNearMeTableEntries">
+
 </table>
+</div>
 
 
 <p/>

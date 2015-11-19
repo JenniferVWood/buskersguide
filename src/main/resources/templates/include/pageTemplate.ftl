@@ -2,7 +2,7 @@
 [#escape x as x?html]
 [#macro pageTemplate title]
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
     <title>${title}</title>
 
