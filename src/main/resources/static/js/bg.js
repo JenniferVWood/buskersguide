@@ -103,5 +103,6 @@ var renderLocationsNearMe = function(o) {
 
     //var tableContent = $('#locationsNearMeTableEntries');
     //tableContent.html(html);
-    $(html).appendTo('#locationsNearMeTableEntries');
+    $('#locationsNearMeTableEntries').replaceWith(html);
+
 };
