@@ -11,13 +11,24 @@ keep playing).  And, in Northampton MA (US), you need a $5 license from city hal
 Todo:
 
 (feature)
+
 Stub out details page
+
+Allow image URL submission
+
 
 
 (bug)
+
 improve de-duplication alg
+
 prevent no-name locations
 
+prevent JS injection in forms. :-(
+
+
 (infrastructure)
+
 Set up DB connection so it will work with OpsWorks (JNDI?)
+
 use real spring-security instead of the fakey thing I wrote (even if we still don't require passwords)
