@@ -6,6 +6,7 @@ import com.davewhoyt.bg.service.LocationService;
 import com.davewhoyt.bg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -47,6 +48,21 @@ public class LocationController {
                 BigDecimal.valueOf(latitude),
                 BigDecimal.valueOf(longitude),
                 radiusInMeters, 0, 100);
+    }
+
+
+    @RequestMapping(value = "details/{locationId}")
+    @ResponseBody
+    public Object details(@PathVariable("locationId") Long locationId) {
+        return null;
+    }
+
+    @RequestMapping(value = "details/{locationId}/render")
+    public String renderDetailsPage(@CookieValue(value = "userName") String userName, Model model
+                                    , @PathVariable("locationId") Long locationId) {
+        model.addAttribute("userName", userName);
+
+        return "/details";
     }
 
 

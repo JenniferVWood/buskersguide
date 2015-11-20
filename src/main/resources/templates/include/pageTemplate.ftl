@@ -18,18 +18,11 @@
             <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
         </div>
         <div class="masthead-nav" role="navigation">
-            [#if !userName??]
-                <ul>
-                    <li><a href="/">Login</a>
-                    </li>
-                </ul>
-            [#else]
-                <!--- masthead -->
+                 <!--- masthead -->
                 <div class="wrapper">
                     [#nested]
                 </div>
                 <!-- /wrapper -->
-            [/#if]
         </div>
     </div>
 </body>
