@@ -89,13 +89,19 @@ var fetchLocationsNearMe = function(position) {
     return false;
 };
 
+/**
+ * It seems like there's too much direct definition of html here.
+ * But for now, it will do.
+ *
+ * @param o
+ */
 var renderLocationsNearMe = function(o) {
     var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
         html += '<tr>';
-        html += '<td> <a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z">' + o[i].name + '</a></td>';
+        html += '<td> <a href="/location/details/" + o[i].id>' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
-        html += '<td>' + o[i].distanceInMeters + ' meters</td>';
+        html += '<td><a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z"> + ' + o[i].distanceInMeters + ' meters</a></td>';
         html += '</tr>';
     }
     html += '</table>';
