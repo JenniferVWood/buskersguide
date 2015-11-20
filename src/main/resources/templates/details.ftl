@@ -6,19 +6,22 @@
     [@page.pageTemplate "Buskers Guide"]
     <div class="content" role="main">
         [#if !userName??]
+        <h4>Log in to edit page.</h4>
             [#include "login.ftl"]
-        [#else]
-
         </div>
+        [#else]
         <!-- /content -->
 
         Hello, ${userName}
 
-        <hr/>
-            [#include "include/submitLocation.ftl" ]
-        <hr/>
-
-            [#include "include/listLocations.ftl" ]
+        <div/>
         [/#if]
+
+        <h3>Stub for Details Page</h3>
+
+        <ul>
+            <li>Non-logged-in user can view this page</li>
+            <li>Logged-in user can edit this page</li>
+        </ul>
     [/@page.pageTemplate]
 [/#escape]

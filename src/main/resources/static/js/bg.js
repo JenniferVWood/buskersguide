@@ -50,7 +50,7 @@ var saveLocation = function(position){
     var that = this;
     $.ajax({
         type: "POST",
-        url: "/location/create",
+        url: "/location/rate",
         data: JSON.stringify(locationData),
         contentType: "application/json",
         success: function() {
@@ -99,7 +99,7 @@ var renderLocationsNearMe = function(o) {
     var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
         html += '<tr>';
-        html += '<td> <a href="/location/details/" + o[i].id>' + o[i].name + '</a></td>';
+        html += '<td> <a href="/location/details/' + o[i].locationId + '/render">' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
         html += '<td><a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z"> + ' + o[i].distanceInMeters + ' meters</a></td>';
         html += '</tr>';
