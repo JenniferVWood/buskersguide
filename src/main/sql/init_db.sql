@@ -68,3 +68,15 @@ ALTER TABLE location ADD COLUMN geog geography(Point,4326);
 UPDATE location SET geog = ST_MakePoint(longitude, latitude);
 
 \i trig_location_post_insert.sql;
+
+create table comment (
+  commentid bigserial primary key,
+  memberid bigint not null REFERENCES member(userid),
+  locationid bigint NOT NULL REFERENCES location(locationid),
+  commenttext text,
+  createddatetime TIMESTAMP
+)
+;
+
+alter table location
+add column longdescription TEXT;
