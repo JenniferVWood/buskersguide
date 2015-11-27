@@ -14,11 +14,18 @@
 
         Hello, ${userName}
 
-        <hr/>
-            [#include "include/submitLocation.ftl" ]
-        <hr/>
+        <br/>${display}
+            [#switch display]
+                [#case "detail"]
+                    [#include "include/details.ftl"]
+                    [#break]
+                [#default]
+                <hr/>
+                    [#include "include/submitLocation.ftl" ]
+                <hr/>
 
-            [#include "include/listLocations.ftl" ]
+                    [#include "include/listLocations.ftl" ]
+            [/#switch]
         [/#if]
     [/@page.pageTemplate]
 [/#escape]

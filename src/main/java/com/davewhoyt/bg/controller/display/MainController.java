@@ -1,4 +1,4 @@
-package com.davewhoyt.bg.controller;
+package com.davewhoyt.bg.controller.display;
 
 import com.davewhoyt.bg.common.Logging;
 import com.davewhoyt.bg.data.model.Location;
@@ -9,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.inject.Inject;
 import java.util.List;
 
 /**
@@ -27,8 +26,9 @@ public class MainController implements Logging {
         List<Location> locations = locationService.listAll();
 
         model.addAttribute("locations", locations);
-
         model.addAttribute("userName", userName);
+
+        model.addAttribute("display", "index");
         return "index";
     }
 

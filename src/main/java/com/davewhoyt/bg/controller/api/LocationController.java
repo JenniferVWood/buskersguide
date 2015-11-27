@@ -1,4 +1,4 @@
-package com.davewhoyt.bg.controller;
+package com.davewhoyt.bg.controller.api;
 
 import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.Member;
@@ -16,8 +16,8 @@ import java.util.List;
 /**
  * Created by david on 11/10/15.
  */
-@Controller()
-@RequestMapping(value="/location")
+@Controller("locationApiController")
+@RequestMapping(value="/api/location")
 public class LocationController {
 
     @Autowired
@@ -57,13 +57,6 @@ public class LocationController {
         return null;
     }
 
-    @RequestMapping(value = "details/{locationId}/render")
-    public String renderDetailsPage(@CookieValue(value = "userName") String userName, Model model
-                                    , @PathVariable("locationId") Long locationId) {
-        model.addAttribute("userName", userName);
-
-        return "/details";
-    }
 
 
     @Inject

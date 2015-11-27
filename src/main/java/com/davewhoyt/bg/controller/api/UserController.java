@@ -1,4 +1,4 @@
-package com.davewhoyt.bg.controller;
+package com.davewhoyt.bg.controller.api;
 
 import com.davewhoyt.bg.common.Logging;
 import com.davewhoyt.bg.data.model.Member;

@@ -50,7 +50,7 @@ var saveLocation = function(position){
     var that = this;
     $.ajax({
         type: "POST",
-        url: "/location/rate",
+        url: "/api/location/rate",
         data: JSON.stringify(locationData),
         contentType: "application/json",
         success: function() {
@@ -82,7 +82,7 @@ var fetchLocationsNearMe = function(position) {
     var coords = position.coords
     $.ajax({
         dataType: "json",
-        url: "/location/near/" + coords.latitude + "/" + coords.longitude + "/2000",
+        url: "/api/location/near/" + coords.latitude + "/" + coords.longitude + "/2000",
         data: undefined,
         success: renderLocationsNearMe
     });
@@ -93,13 +93,15 @@ var fetchLocationsNearMe = function(position) {
  * It seems like there's too much direct definition of html here.
  * But for now, it will do.
  *
+ * In true JSP fashion, could we do this in the template instead?
+ *
  * @param o
  */
 var renderLocationsNearMe = function(o) {
     var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
         html += '<tr>';
-        html += '<td> <a href="/location/details/' + o[i].locationId + '/render">' + o[i].name + '</a></td>';
+        html += '<td> <a href="/render/location/detail/' + o[i].locationId + '">' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
         html += '<td><a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z"> + ' + o[i].distanceInMeters + ' meters</a></td>';
         html += '</tr>';
