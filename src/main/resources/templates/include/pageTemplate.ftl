@@ -4,6 +4,7 @@
 <!DOCTYPE html>
 <html lang="en" >
 <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <title>${title}</title>
 
     <!-- META DATA -->
@@ -17,7 +18,15 @@
             </h1>
             <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
         </div>
-        <div class="masthead-nav" role="navigation">
+        [#if !userName??]
+            <script lang="javascript">var loggedIn = false;</script>
+        [#else]
+            <script lang="javascript">var loggedIn = true;</script>
+            Logged in as: ${userName}
+        </div>
+        [/#if]
+
+    <div class="masthead-nav" role="navigation">
                  <!--- masthead -->
                 <div class="wrapper">
                     [#nested]
@@ -27,7 +36,6 @@
     </div>
 </body>
 </html>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 <script src="/js/bg.js"></script>
 [/#macro]
 [/#escape]

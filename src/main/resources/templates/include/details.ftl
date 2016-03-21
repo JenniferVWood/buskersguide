@@ -1,25 +1,20 @@
 [#ftl]
-[#import "spring.ftl" as spring/]
 [#assign xhtmlCompliant = true in spring/]
-[#import "pageTemplate.ftl" as page]
 [#escape x as x?html]
     <div class="content" role="main">
-        [#if !userName??]
-        <h4>Log in to edit page.</h4>
-            [#include "../login.ftl"]
-        </div>
-        [#else]
-        <!-- /content -->
-
-        Hello, ${userName}
+        Details for ${location.name}
 
         <div/>
-        [/#if]
 
-        <h3>Stub for Details Page</h3>
+        <h3><div id="location-name">location name</div></h3>
 
+        <img id="location-image" width="100" height="100" src="http://www.underconsideration.com/brandnew/archives/google_2015_logo_detail.png"/>
+
+        <h2><div id="details-long-description">Long Description</div></h2>
+        <h2>Comments:</h2>
         <ul>
-            <li>Non-logged-in user can view this page</li>
-            <li>Logged-in user can edit this page</li>
+            <div id="comments-list"></div>
         </ul>
+    <script src="/js/details.js"></script>
+    <script language="JavaScript">$(document).ready(buildDetailsPage(${location.locationId}));</script>
 [/#escape]

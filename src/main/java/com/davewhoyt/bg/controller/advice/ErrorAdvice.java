@@ -28,13 +28,13 @@ public class ErrorAdvice implements Logging {
     }
 
 
-    @ExceptionHandler(value = {ServletRequestBindingException.class, NoSuchUserException.class})
-    public ModelAndView notLoggedIn(Exception e, HttpServletRequest request) {
-        if (e instanceof NoSuchUserException || e.getMessage().toLowerCase().contains("missing cookie")) {
-            return new ModelAndView("login");
-        }
-        throw new RuntimeException(e);
-    }
+//    @ExceptionHandler(value = {ServletRequestBindingException.class, NoSuchUserException.class})
+//    public ModelAndView notLoggedIn(Exception e, HttpServletRequest request) {
+//        if (e instanceof NoSuchUserException || e.getMessage().toLowerCase().contains("missing cookie")) {
+//            return new ModelAndView("login");
+//        }
+//        throw new RuntimeException(e);
+//    }
 
 //    @ExceptionHandler(value = SnaFooException.class)
 //    public @ResponseBody String handleSnaFooException(SnaFooException se, HttpServletResponse response) {

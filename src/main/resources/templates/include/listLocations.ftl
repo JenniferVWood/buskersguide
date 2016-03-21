@@ -10,8 +10,8 @@
 </div>
 
 
-<p/>
-All Locations:
+<p/><p/>
+<h3>All Locations</h3>
 <table>
     <th>name</th>
     <th>rating</th>

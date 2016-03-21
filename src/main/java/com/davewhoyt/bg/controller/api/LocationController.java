@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 import java.math.BigDecimal;
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -26,8 +27,8 @@ public class LocationController {
     private LocationService locationService;
 
     @RequestMapping(value = "rate", method = RequestMethod.POST)
-    public String createLocation(@CookieValue(value = "userName") String userName, @RequestBody Location location) {
-        Member member = userService.findByUserName(userName);
+    public String createLocation(Principal principal, @RequestBody Location location) {
+        Member member = userService.findByUserName(principal.getName());
         locationService.createOrUpdate(location, member);
         return "/";
     }
@@ -53,8 +54,9 @@ public class LocationController {
 
     @RequestMapping(value = "details/{locationId}")
     @ResponseBody
-    public Object details(@PathVariable("locationId") Long locationId) {
-        return null;
+    public Location details(@PathVariable("locationId") Long locationId) {
+
+        return locationService.findByLocationId(locationId);
     }
 
 

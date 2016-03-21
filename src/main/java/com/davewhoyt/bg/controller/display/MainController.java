@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 /**
@@ -20,13 +21,13 @@ public class MainController implements Logging {
     LocationService locationService;
 
     @RequestMapping("/")
-    public String renderIndexPage(@CookieValue(value = "userName") String userName, Model model) {
+    public String renderIndexPage(Principal principal, Model model) {
         getLogger().debug("serving index page");
 
         List<Location> locations = locationService.listAll();
 
         model.addAttribute("locations", locations);
-        model.addAttribute("userName", userName);
+        model.addAttribute("userName", principal.getName());
 
         model.addAttribute("display", "index");
         return "index";

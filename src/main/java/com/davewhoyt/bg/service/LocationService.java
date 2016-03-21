@@ -54,6 +54,12 @@ public class LocationService {
         return locationRepository.save(location);
     }
 
+    @Transactional
+    public Location findByLocationId(Long locationId) {
+        return customLocationRepository.findByLocationId(locationId);
+    }
+
+
 
     @Transactional
     public List<Location> listAll() {

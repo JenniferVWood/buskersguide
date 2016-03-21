@@ -114,3 +114,4 @@ var renderLocationsNearMe = function(o) {
     $('#locationsNearMeTableEntries').replaceWith(html);
 
 };
+

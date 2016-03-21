@@ -1,7 +1,6 @@
 [#ftl]
 [#import "spring.ftl" as spring/]
 [#assign xhtmlCompliant = true in spring/]
-[#import "include/pageTemplate.ftl" as page]
 [#escape x as x?html]
     [@page.pageTemplate "Login or Create User"]
     <form action="/member/login" method="GET">

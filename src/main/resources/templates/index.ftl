@@ -5,14 +5,8 @@
 [#escape x as x?html]
     [@page.pageTemplate "Buskers Guide"]
     <div class="content" role="main">
-        [#if !userName??]
-            [#include "login.ftl"]
-        [#else]
+          <!-- /content -->
 
-        </div>
-        <!-- /content -->
-
-        Hello, ${userName}
 
         <br/>${display}
             [#switch display]
@@ -26,6 +20,5 @@
 
                     [#include "include/listLocations.ftl" ]
             [/#switch]
-        [/#if]
     [/@page.pageTemplate]
 [/#escape]
