@@ -1,8 +1,8 @@
 package com.davewhoyt.bg.controller.api;
 
 import com.davewhoyt.bg.common.Logging;
-import com.davewhoyt.bg.data.model.Member;
-import com.davewhoyt.bg.data.repository.jpa.JpaMemberRepository;
+import com.davewhoyt.bg.data.model.User;
+import com.davewhoyt.bg.data.repository.jpa.JpaUserRepository;
 import com.davewhoyt.bg.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +20,7 @@ import javax.servlet.http.HttpServletResponse;
 public class UserController implements Logging {
 
     private UserService userService;
-    private JpaMemberRepository userRepository;
+    private JpaUserRepository userRepository;
 
     /**
      * Create a new user.
@@ -32,8 +32,8 @@ public class UserController implements Logging {
     public String create(@RequestParam("userName") String userName,
                          HttpServletRequest request,
                          HttpServletResponse response) {
-        Member newMember = userService.createUser(userName);
-        Cookie cookie = new Cookie("userName", newMember.getUserName());
+        User newUser = userService.createUser(userName);
+        Cookie cookie = new Cookie("userName", newUser.getUserName());
         cookie.setPath("/");
         response.addCookie(cookie);
         return "redirect:/";
@@ -49,8 +49,8 @@ public class UserController implements Logging {
     public String login(@RequestParam("userName") String userName,
                         HttpServletRequest request,
                         HttpServletResponse response) {
-        Member newMember = userService.findByUserName(userName);
-        Cookie cookie = new Cookie("userName", newMember.getUserName());
+        User newUser = userService.findByUserName(userName);
+        Cookie cookie = new Cookie("userName", newUser.getUserName());
         cookie.setPath("/");
         response.addCookie(cookie);
         getLogger().debug("forwarding to index controller");
@@ -66,7 +66,7 @@ public class UserController implements Logging {
      */
     @RequestMapping("/all")
     public @ResponseBody
-    Iterable<Member> findAll(@CookieValue(value = "userName") String userName) {
+    Iterable<User> findAll(@CookieValue(value = "userName") String userName) {
 
         return userRepository.findAll();
     }
@@ -79,7 +79,7 @@ public class UserController implements Logging {
     }
 
     @Inject
-    public void setUserRepository(JpaMemberRepository userRepository) {
+    public void setUserRepository(JpaUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 }

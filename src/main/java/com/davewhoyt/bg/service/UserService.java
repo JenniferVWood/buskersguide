@@ -1,8 +1,8 @@
 package com.davewhoyt.bg.service;
 
 import com.davewhoyt.bg.common.exception.NoSuchUserException;
-import com.davewhoyt.bg.data.model.Member;
-import com.davewhoyt.bg.data.repository.jpa.JpaMemberRepository;
+import com.davewhoyt.bg.data.model.User;
+import com.davewhoyt.bg.data.repository.jpa.JpaUserRepository;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -12,26 +12,26 @@ import javax.inject.Inject;
  *
  * We may not actually have any special logic here -- most of what we need is defined in DB Unique constraints.
  */
-@Service("userService")
+@Service("customUserService")
 public class UserService {
 
-    private JpaMemberRepository userRepository;
+    private JpaUserRepository userRepository;
 
-    public Member createUser(String userName) {
-        Member member = new Member();
-        member.setUserName(userName);
-        return userRepository.save(member);
+    public User createUser(String userName) {
+        User user = new User();
+        user.setUserName(userName);
+        return userRepository.save(user);
     }
 
-    public Member findByUserName(String userName) throws NoSuchUserException {
-        Member member = userRepository.findByUserName(userName);
-        if (member == null) {
+    public User findByUserName(String userName) throws NoSuchUserException {
+        User user = userRepository.findByUserName(userName);
+        if (user == null) {
             throw new NoSuchUserException();
         }
-        return member;
+        return user;
     }
     @Inject
-    public void setUserRepository(JpaMemberRepository userRepository) {
+    public void setUserRepository(JpaUserRepository userRepository) {
         this.userRepository = userRepository;
     }
 }

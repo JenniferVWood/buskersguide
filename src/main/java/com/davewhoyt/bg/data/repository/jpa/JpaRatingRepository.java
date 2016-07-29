@@ -1,7 +1,7 @@
 package com.davewhoyt.bg.data.repository.jpa;
 
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
 import com.davewhoyt.bg.data.repository.RatingRepository;
 import org.springframework.data.repository.CrudRepository;
@@ -13,5 +13,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface JpaRatingRepository extends CrudRepository<Rating,Long>, RatingRepository {
 
-    Rating findByLocationAndMember(Location location, Member member);
+    Rating findByLocationAndUser(Location location, User user);
 }

@@ -1,7 +1,7 @@
 package com.davewhoyt.bg.service;
 
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
 import com.davewhoyt.bg.data.repository.jpa.JpaRatingRepository;
 import org.springframework.stereotype.Service;
@@ -18,14 +18,14 @@ public class RatingService {
     private JpaRatingRepository ratingRepository;
 
     @Transactional
-    public Rating findByLocationAndMember(Location location, Member member) {
-        return ratingRepository.findByLocationAndMember(location, member);
+    public Rating findByLocationAndUser(Location location, User user) {
+        return ratingRepository.findByLocationAndUser(location, user);
     }
 
     @Transactional
-    public Rating createForLocationAndMember(Location location, Member member, Integer value) {
+    public Rating createForLocationAndUser(Location location, User user, Integer value) {
         Rating rating = new Rating();
-        rating.setMember(member);
+        rating.setUser(user);
         rating.setValue(value);
         rating.setLocation(location);
         ratingRepository.save(rating);

@@ -7,8 +7,8 @@ import javax.persistence.*;
 /**
  * Created by david on 11/10/15.
  */
-@Entity(name = "member")
-public class Member implements Logging {
+@Entity(name = "users")
+public class User implements Logging {
 
     @Id
     @GeneratedValue(generator="user_seq")

@@ -2,7 +2,7 @@ package com.davewhoyt.bg.repository;
 
 import com.davewhoyt.bg.ServerApplication;
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
 import com.davewhoyt.bg.data.repository.jpa.CustomJpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
@@ -41,8 +41,8 @@ public class CustomJpaLocationRepositoryTest {
 
     @Test
     public void testFindOne() {
-        Member m1 = userService.createUser("u1");
-        Member m2 = userService.createUser("u2");
+        User m1 = userService.createUser("u1");
+        User m2 = userService.createUser("u2");
 
         // assume that the standard Spring CrudRepository impl works.
         Location l1 = new Location();
@@ -54,12 +54,12 @@ public class CustomJpaLocationRepositoryTest {
         Rating rating = new Rating();
         rating.setValue(2);
         rating.setLocation(l1);
-        rating.setMember(m1);
+        rating.setUser(m1);
         jpaRatingRepository.save(rating);
 
         Rating rating2 = new Rating();
         rating2.setLocation(l1);
-        rating2.setMember(m2);
+        rating2.setUser(m2);
         rating2.setValue(1);
         jpaRatingRepository.save(rating2);
 
@@ -73,7 +73,7 @@ public class CustomJpaLocationRepositoryTest {
     @Test
     public void testListAll() {
         // assume that the standard Spring CrudRepository impl works.
-        Member m1 = userService.createUser("u3");
+        User m1 = userService.createUser("u3");
 
         Location l1 = new Location();
         l1.setName("l1");
@@ -83,7 +83,7 @@ public class CustomJpaLocationRepositoryTest {
 
         Rating rating = new Rating();
         rating.setValue(2);
-        rating.setMember(m1);
+        rating.setUser(m1);
         jpaRatingRepository.save(rating);
 
         Location l2 = new Location();
@@ -94,7 +94,7 @@ public class CustomJpaLocationRepositoryTest {
 
         Rating rating2 = new Rating();
         rating2.setLocation(l2);
-        rating2.setMember(m1);
+        rating2.setUser(m1);
         rating2.setValue(1);
         jpaLocationRepository.save(l2);
         jpaRatingRepository.save(rating2);

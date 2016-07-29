@@ -1,7 +1,7 @@
 package com.davewhoyt.bg.service;
 
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
 import com.davewhoyt.bg.data.repository.jpa.CustomJpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
@@ -31,25 +31,25 @@ public class LocationService {
      * If the location exists, and the user has already rated it, then update the user's rating for that location.
      *
      * @param location
-     * @param member
+     * @param user
      * @return the new or updated ReadWriteLocation
      */
     @Transactional
-    public Location createOrUpdate(Location location, Member member) {
+    public Location createOrUpdate(Location location, User user) {
         Location previousLocation =  locationRepository.findByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
 
         if (previousLocation != null) {
-            Rating previousRating = ratingRepository.findByLocationAndMember(previousLocation, member);
+            Rating previousRating = ratingRepository.findByLocationAndUser(previousLocation, user);
             if (previousRating != null) {
                 previousRating.setValue(location.getRating());
                 Rating r = ratingRepository.save(previousRating);
             } else {
-                Rating r = ratingService.createForLocationAndMember(previousLocation, member, location.getRating());
+                Rating r = ratingService.createForLocationAndUser(previousLocation, user, location.getRating());
             }
             return previousLocation;
 
         } else {
-           Rating r = ratingService.createForLocationAndMember(location, member, location.getRating());
+           Rating r = ratingService.createForLocationAndUser(location, user, location.getRating());
         }
         return locationRepository.save(location);
     }

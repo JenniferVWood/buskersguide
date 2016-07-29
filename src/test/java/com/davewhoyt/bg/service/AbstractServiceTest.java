@@ -1,8 +1,7 @@
 package com.davewhoyt.bg.service;
 
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.ReadWriteLocation;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaRatingRepository;
 import org.junit.After;
@@ -29,7 +28,7 @@ public class AbstractServiceTest {
     @Autowired
     JpaRatingRepository ratingRepository;
 
-    public Member m1, m2 = null;
+    public User m1, m2 = null;
     public Location l1 = null;
 
     @Before

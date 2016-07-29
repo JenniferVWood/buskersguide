@@ -17,7 +17,7 @@ public class Rating {
 
     @ManyToOne
     @JoinColumn(name="memberid")
-    private Member member;
+    private User user;
 
     @ManyToOne
     @JoinColumn(name="buskerid")
@@ -38,12 +38,12 @@ public class Rating {
         this.ratingId = ratingId;
     }
 
-    public Member getMember() {
-        return member;
+    public User getUser() {
+        return user;
     }
 
-    public void setMember(Member member) {
-        this.member = member;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Busker getBusker() {

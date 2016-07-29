@@ -1,12 +1,11 @@
 package com.davewhoyt.bg.controller.api;
 
 import com.davewhoyt.bg.data.model.Location;
-import com.davewhoyt.bg.data.model.Member;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.service.LocationService;
 import com.davewhoyt.bg.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
@@ -28,8 +27,8 @@ public class LocationController {
 
     @RequestMapping(value = "rate", method = RequestMethod.POST)
     public String createLocation(Principal principal, @RequestBody Location location) {
-        Member member = userService.findByUserName(principal.getName());
-        locationService.createOrUpdate(location, member);
+        User user = userService.findByUserName(principal.getName());
+        locationService.createOrUpdate(location, user);
         return "/";
     }
 
