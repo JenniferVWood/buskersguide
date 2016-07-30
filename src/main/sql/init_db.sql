@@ -66,6 +66,7 @@ create TABLE rating (
   ratingid BIGSERIAL,
 PRIMARY KEY (ratingid),
 FOREIGN KEY (buskerid) REFERENCES busker (buskerid),
+FOREIGN KEY (userid) REFERENCES users (userid),
 FOREIGN KEY (locationid) REFERENCES location (locationid)
 );
 CREATE UNIQUE INDEX rating_ratingid_pk ON rating (ratingid);

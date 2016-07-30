@@ -1,6 +1,5 @@
 package com.davewhoyt.bg.repository;
 
-import com.davewhoyt.bg.ServerApplication;
 import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
@@ -12,7 +11,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
+import org.springframework.boot.test.autoconfigure.orm.jpa.AutoConfigureTestDatabase;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import java.math.BigDecimal;
@@ -21,11 +25,12 @@ import java.util.List;
 import static org.junit.Assert.*;
 
 /**
- * Created by david on 11/12/15.
+ * (c) buskersguidetotheuniverse.org
  */
-@RunWith(SpringJUnit4ClassRunner.class)
-@SpringApplicationConfiguration(classes = ServerApplication.class)
-@WebAppConfiguration
+@RunWith(SpringRunner.class)
+@SpringBootTest
+@DataJpaTest
+@AutoConfigureTestDatabase
 public class CustomJpaLocationRepositoryTest {
     @Autowired
     CustomJpaLocationRepository customJpaLocationRepository;

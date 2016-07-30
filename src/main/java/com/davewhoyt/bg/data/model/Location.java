@@ -25,7 +25,7 @@ import java.math.BigDecimal;
         , @ColumnResult(name="distanceInMeters", type = Double.class)})
 public class Location {
     @Id
-    @GeneratedValue(generator="location_seq")
+    @GeneratedValue(generator="location_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="location_seq", sequenceName = "location_locationid_seq")
     @Column(name="locationid")
     private Long locationId;

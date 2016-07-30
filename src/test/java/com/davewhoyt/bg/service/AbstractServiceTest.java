@@ -4,6 +4,7 @@ import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaRatingRepository;
+import com.davewhoyt.bg.data.repository.jpa.JpaUserRepository;
 import org.junit.After;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class AbstractServiceTest {
     @Autowired UserService userService;
 
     @Autowired
-    JpaLocationRepository memberRepository;
+    JpaUserRepository userRepository;
 
     @Autowired
     JpaRatingRepository ratingRepository;
@@ -52,7 +53,7 @@ public class AbstractServiceTest {
         locationRepository.deleteAll();
         this.l1 = null;
 
-        memberRepository.deleteAll();
+        userRepository.deleteAll();
         this.m1 = null;
         this.m2 = null;
 

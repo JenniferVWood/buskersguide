@@ -1,9 +1,6 @@
 package com.davewhoyt.bg.data.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Created by david on 11/10/15.
@@ -11,7 +8,9 @@ import javax.persistence.Id;
 @Entity
 public class Busker {
     @Id
-    @GeneratedValue
+    @GeneratedValue(generator="busker_seq", strategy = GenerationType.SEQUENCE)
+    @SequenceGenerator(name="busker_seq", sequenceName = "busker_buskerid_seq")
+    @Column(name="ratingid")
     private Long buskerId;
 
     @Column

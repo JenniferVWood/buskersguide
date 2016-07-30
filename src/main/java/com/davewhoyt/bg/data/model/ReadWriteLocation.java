@@ -25,7 +25,7 @@ import javax.persistence.*;
 @UniqueConstraint(columnNames = {"latitude", "longitude"}))
 public class ReadWriteLocation {
     @Id
-    @GeneratedValue(generator="location_seq")
+    @GeneratedValue(generator="location_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="location_seq", sequenceName = "location_locationid_seq")
     @Column(name="locationid")
     private Long locationId;

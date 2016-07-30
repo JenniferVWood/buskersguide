@@ -7,16 +7,16 @@ import javax.persistence.*;
  */
 @Entity(name="rating")
 @Table(uniqueConstraints=
-@UniqueConstraint(columnNames = {"memberid", "locationid", "buskerid"}))
+@UniqueConstraint(columnNames = {"userid", "locationid", "buskerid"}))
 public class Rating {
     @Id
-    @GeneratedValue(generator="rating_seq")
+    @GeneratedValue(generator="rating_seq", strategy = GenerationType.SEQUENCE)
     @SequenceGenerator(name="rating_seq", sequenceName = "rating_ratingid_seq")
     @Column(name="ratingid")
     private Long ratingId;
 
     @ManyToOne
-    @JoinColumn(name="memberid")
+    @JoinColumn(name="userid")
     private User user;
 
     @ManyToOne
