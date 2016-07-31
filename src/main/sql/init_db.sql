@@ -27,7 +27,7 @@ create table if not exists authorities (
   username varchar(50) not null,
   authority varchar(50) not null
 );
-create unique index user_authorities_idx on authorities(username, authorities);
+create unique index user_authorities_idx on authorities(username, authority);
 
 create TABLE busker (
   buskerid BIGSERIAL PRIMARY KEY,
