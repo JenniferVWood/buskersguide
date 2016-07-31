@@ -60,10 +60,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userDetailsService).passwordEncoder(encoder);
         auth.jdbcAuthentication().dataSource(datasource);
 
-        if(!userDetailsService.userExists("user")) {
+        if(!userDetailsService.userExists("jwood")) {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("USER"));
-            User userDetails = new User("user", encoder.encode("password"), authorities);
+            User userDetails = new User("jwood", encoder.encode("JeWo2016"), authorities);
 
             userDetailsService.createUser(userDetails);
         }

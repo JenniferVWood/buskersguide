@@ -46,7 +46,7 @@ create TABLE location (
   geog geography(Point,4326)
 );
 CREATE UNIQUE INDEX location_latitude_longitude_idx ON location (latitude, longitude);
-\i trig_location_post_insert.sql;
+
 
 
 create TABLE location_busker (
@@ -82,3 +82,33 @@ create table comment (
   createddatetime TIMESTAMP
 )
 ;
+
+
+
+----------------------------------------------------------------------------------------------
+--
+-- fn_trig_location_pre_insert.sql
+--
+-- populate location.geog on each insert.
+--
+-- This exists because mapping that data to/from hibernate is a configuration nightmare,
+-- but we need this type to exist in order to do queries like "find locations close to x,y"
+--
+-----------------------------------------------------------------------------------------------
+
+CREATE OR REPLACE FUNCTION fn_trig_location_pre_insert()
+  RETURNS trigger AS
+$func$
+BEGIN
+
+  NEW.geog := ST_MakePoint(NEW.longitude, NEW.latitude);
+
+  RETURN NEW;
+
+END
+$func$ LANGUAGE plpgsql;
+
+CREATE TRIGGER trig_location_pre_insert
+BEFORE INSERT ON location
+FOR EACH ROW
+EXECUTE PROCEDURE fn_trig_location_pre_insert();
