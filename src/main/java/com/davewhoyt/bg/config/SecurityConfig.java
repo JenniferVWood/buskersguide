@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                .antMatchers("/.well-known/acme-challenge/BmuJxaS5nRXGSPNFDnDez2VkE5qU3MD7NiwMxiO5Nys").permitAll()
+                .antMatchers("/.well-known/acme-challenge/3liqbcC4lbLYgqZrKtrcvoqFf6OwAQgYPnRx7hkio60").permitAll()
 
 //                    .antMatchers("/", "/home").permitAll()
                     .antMatchers("/user/**").hasAuthority("ADMIN")

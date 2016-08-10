@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @Controller
 public class TmpController {
 
-    @RequestMapping("/.well-known/acme-challenge/BmuJxaS5nRXGSPNFDnDez2VkE5qU3MD7NiwMxiO5Nys")
+    @RequestMapping("/.well-known/acme-challenge/3liqbcC4lbLYgqZrKtrcvoqFf6OwAQgYPnRx7hkio60")
     public @ResponseBody String challenge() {
-        return "BmuJxaS5nRXGSPNFDnDez2VkE5qU3MD7NiwMxiO5Nys.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
+        return "3liqbcC4lbLYgqZrKtrcvoqFf6OwAQgYPnRx7hkio60.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
     }
 }
