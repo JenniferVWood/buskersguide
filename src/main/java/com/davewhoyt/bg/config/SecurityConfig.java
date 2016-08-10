@@ -15,6 +15,7 @@ import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 import javax.sql.DataSource;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -30,7 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
+                .antMatchers("/.well-known/acme-challenge/BmuJxaS5nRXGSPNFDnDez2VkE5qU3MD7NiwMxiO5Nys").permitAll()
+
 //                    .antMatchers("/", "/home").permitAll()
+                    .antMatchers("/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -63,6 +67,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         if(!userDetailsService.userExists("jwood")) {
             List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
             authorities.add(new SimpleGrantedAuthority("USER"));
+            authorities.add(new SimpleGrantedAuthority("ADMIN"));
             User userDetails = new User("jwood", encoder.encode("JeWo2016"), authorities);
 
             userDetailsService.createUser(userDetails);
