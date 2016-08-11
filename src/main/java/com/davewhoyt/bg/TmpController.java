@@ -11,14 +11,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @RequestMapping("/.well-known/acme-challenge/")
 public class TmpController {
 
-    @RequestMapping("Ed082E_R9x-7E0HMg0s6BfifY1OGF9dJ5pRvwuXHnxg")
+    @RequestMapping("Cx9VPYfoEQSG23ufFOCJcYyDuLQdnedMOeDr69v4ZEg")
     public @ResponseBody String challenge() {
-        return "Ed082E_R9x-7E0HMg0s6BfifY1OGF9dJ5pRvwuXHnxg.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
+        return "Cx9VPYfoEQSG23ufFOCJcYyDuLQdnedMOeDr69v4ZEg.bBev5h0NloRfB0tSU-ylDky26ulmSLkXHOEhPI9MTLc";
     }
 
 
-    @RequestMapping("")
+    @RequestMapping("s3jUloJmFiOkMm4wKHJZgMmNzwzxprAhx-BKTZ-NjWI")
     public @ResponseBody String challenge2() {
-        return "";
+        return "s3jUloJmFiOkMm4wKHJZgMmNzwzxprAhx-BKTZ-NjWI.bBev5h0NloRfB0tSU-ylDky26ulmSLkXHOEhPI9MTLc";
     }
 }
