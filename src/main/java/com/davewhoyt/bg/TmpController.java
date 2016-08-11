@@ -8,15 +8,17 @@ import org.springframework.web.bind.annotation.ResponseBody;
  * Created by david on 8/9/16.
  */
 @Controller
-@RequestMapping("/.well-known/acme-challenge")
+@RequestMapping("/.well-known/acme-challenge/")
 public class TmpController {
 
-    @RequestMapping("yaXKfNt_v_IINBKRZBM2dAyydASCljLZKykrATZbJNk")
+    @RequestMapping("Ed082E_R9x-7E0HMg0s6BfifY1OGF9dJ5pRvwuXHnxg")
     public @ResponseBody String challenge() {
-        return "yaXKfNt_v_IINBKRZBM2dAyydASCljLZKykrATZbJNk.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
+        return "Ed082E_R9x-7E0HMg0s6BfifY1OGF9dJ5pRvwuXHnxg.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
     }
-    @RequestMapping("l7zk2r15iUW5oHuefBuO0A5fITnT3Rg2hfIr2MXYpBE")
+
+
+    @RequestMapping("")
     public @ResponseBody String challenge2() {
-        return "l7zk2r15iUW5oHuefBuO0A5fITnT3Rg2hfIr2MXYpBE.fBMzJbBfpan_dUJaa7YIElvqBmoaAzzaOy6rweLYN1Q";
+        return "";
     }
 }
