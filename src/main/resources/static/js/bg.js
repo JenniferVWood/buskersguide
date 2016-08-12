@@ -28,12 +28,27 @@ var onSubmitLocation = function() {
     return false;
 };
 
+
+var onSubmitLocationManual = function() {
+    var locationData = {
+        //$('#locationForm').serializeArray()
+        name: $('#manualLocationForm input[name=name]').val(),
+        rating: $('#manualLocationForm select[name=rating]').val(),
+        latitude: $('#manualLocationForm select[name=latitude]').val(),
+        longitude:$('#manualLocationForm select[name=longitude]').val(),
+    };
+
+    sendSaveLocationRequest(locationData);
+    return false;
+};
+
+
 /**
  * part 2 of 3 functions for creating locations.
  *
  * Make AJAX POST to record new location.
  *
- * @param o Event.
+ * @param position location data.
  */
 var saveLocation = function(position){
     // submit AJAX
@@ -47,6 +62,11 @@ var saveLocation = function(position){
         longitude:position.coords.longitude
     };
 
+    sendSaveLocationRequest(locationData);
+    return false;
+};
+
+var sendSaveLocationRequest = function(locationData) {
     var that = this;
     $.ajax({
         type: "POST",
@@ -62,7 +82,9 @@ var saveLocation = function(position){
     });
 
     return false;
+
 };
+
 
 /**
  * part 3 of 3 functions for creating a new location.

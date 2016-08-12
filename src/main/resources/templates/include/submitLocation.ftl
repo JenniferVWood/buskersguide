@@ -21,7 +21,7 @@
 
 <p/><p/>
 Rate a new location manually:
-<form id="locationForm" name="locationForm" onSubmit="return onSubmitLocation(this)">
+<form id="manualLocationForm" name="manualLocationForm" onSubmit="return onSubmitLocationManual(this)">
     Name: <input id="name" name="name" type="text" size="32">
     <br/>Rating:
     <select id="rating" name="rating">
