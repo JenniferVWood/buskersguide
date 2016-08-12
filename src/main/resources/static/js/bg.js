@@ -34,8 +34,8 @@ var onSubmitLocationManual = function() {
         //$('#locationForm').serializeArray()
         name: $('#manualLocationForm input[name=name]').val(),
         rating: $('#manualLocationForm select[name=rating]').val(),
-        latitude: $('#manualLocationForm select[name=latitude]').val(),
-        longitude:$('#manualLocationForm select[name=longitude]').val(),
+        latitude: $('#manualLocationForm input[name=latitude]').val(),
+        longitude:$('#manualLocationForm input[name=longitude]').val(),
     };
 
     sendSaveLocationRequest(locationData);
@@ -125,7 +125,7 @@ var renderLocationsNearMe = function(o) {
         html += '<tr>';
         html += '<td> <a href="/render/location/detail/' + o[i].locationId + '">' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
-        html += '<td><a href="https://www.google.com/maps/preview/@>' + o[i].latitude + ',' +o[i].longitude + ',8z"> + ' + o[i].distanceInMeters + ' meters</a></td>';
+        html += '<td><a href="https://www.google.com/maps/place/' + o[i].latitude + ',' +o[i].longitude + '"> + ' + o[i].distanceInMeters + ' meters</a></td>';
         html += '</tr>';
     }
     html += '</table>';

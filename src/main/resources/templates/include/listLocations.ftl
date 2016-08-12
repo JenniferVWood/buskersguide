@@ -20,7 +20,7 @@
         <tr>
             <td>${l.name}</td>
             <td>${l.averageRating}</td>
-            <td><a href="https://www.google.com/maps/preview/@>${l.latitude},${l.longitude},8z">${l.latitude}/${l.longitude}</a></td>
+            <td><a href="https://www.google.com/maps/place/${l.latitude},${l.longitude}">${l.latitude}/${l.longitude}</a></td>
         </tr>
     [/#list]
 </table>
