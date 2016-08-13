@@ -18,6 +18,7 @@
             </h1>
             <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
         </div>
+    <i>There's a lot of broken stuff in this page, but I'm fixing it pretty often.</i>
         [#if !userName??]
             <script lang="javascript">var loggedIn = false;</script>
         [#else]
