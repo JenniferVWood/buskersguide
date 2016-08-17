@@ -18,7 +18,9 @@
             </h1>
             <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
         </div>
-    <i>There's a lot of broken stuff in this page, but I'm fixing it pretty often.</i>
+        <br /><i> Obviously a work in progress.  Send feedback/suggestions/rants to info@buskersguidetotheuniverse.org</i>
+    <br /><i>8/17/16:  New: Select search radius.</i>
+    <br /><br />
         [#if !userName??]
             <script lang="javascript">var loggedIn = false;</script>
         [#else]

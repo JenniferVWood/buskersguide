@@ -5,7 +5,7 @@
             Name: <input id="name" name="name" type="text" size="32">
             <br/>Rating:
             <select id="rating" name="rating">
-                <option value="1">1</option>
+                <option value="1">1 (lousy)</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
                 <option value="4">4</option>
@@ -14,7 +14,7 @@
                 <option value="7">7</option>
                 <option value="8">8</option>
                 <option value="9">9</option>
-                <option value="10">10</option>
+                <option value="10">10 (amazeballs)</option>
             </select>
             <input type="submit" id="createLocation" value="create"/>
     </form>
