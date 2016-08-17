@@ -1,5 +1,14 @@
 $( document ).ready(function(){
-   onRequestLocationsNearMe();
+
+    $("#nearMeForm").keypress(
+        function(event){
+            if (event.which == '13') {
+                event.preventDefault();
+                onRequestLocationsNearMe();
+            }
+        });
+
+    onRequestLocationsNearMe();
 });
 
 var getGeoData = function(success, failureMessage) {
@@ -96,15 +105,24 @@ var onCreateLocationSuccess = function() {
 
 
 var onRequestLocationsNearMe = function() {
-    getGeoData(fetchLocationsNearMe, "Sorry, you need to enable GPS in order to find locations near you.")
+    getGeoData(fetchLocationsNearMe, "Sorry, you need to enable GPS in order to find locations near you.");
+    return false;
 };
 
 
 var fetchLocationsNearMe = function(position) {
+    var radius = document.getElementById('searchRadius').value;
+
+    if (typeof radius == "undefined" || radius == '' || radius == 0) {
+        radius = 2000;
+    } else {
+        radius = parseInt(radius) * 1000;
+    }
+
     var coords = position.coords
     $.ajax({
         dataType: "json",
-        url: "/api/location/near/" + coords.latitude + "/" + coords.longitude + "/2000",
+        url: "/api/location/near/" + coords.latitude + "/" + coords.longitude + "/" + radius,
         data: undefined,
         success: renderLocationsNearMe
     });
@@ -122,10 +140,12 @@ var fetchLocationsNearMe = function(position) {
 var renderLocationsNearMe = function(o) {
     var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
+        var distance = (Math.abs(o[i].distanceInMeters) / 1000).toFixed(2);
+
         html += '<tr>';
         html += '<td> <a href="/render/location/detail/' + o[i].locationId + '">' + o[i].name + '</a></td>';
         html += '<td>' + o[i].averageRating + '</td>';
-        html += '<td><a href="https://www.google.com/maps/place/' + o[i].latitude + ',' +o[i].longitude + '"> + ' + o[i].distanceInMeters + ' meters</a></td>';
+        html += '<td><a href="https://www.google.com/maps/place/' + o[i].latitude + ',' +o[i].longitude + '"> + ' + distance + ' km</a></td>';
         html += '</tr>';
     }
     html += '</table>';
@@ -133,7 +153,6 @@ var renderLocationsNearMe = function(o) {
 
     //var tableContent = $('#locationsNearMeTableEntries');
     //tableContent.html(html);
-    $('#locationsNearMeTableEntries').replaceWith(html);
-
+    document.getElementById('locationsNearMeTableEntries').innerHTML = html;
 };
 

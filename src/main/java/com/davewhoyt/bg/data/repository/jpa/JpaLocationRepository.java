@@ -14,6 +14,6 @@ import java.util.List;
 @Repository
 public interface JpaLocationRepository extends CrudRepository<Location, Long>, LocationRepository {
     Location findByLocationId(Long locationId);
-    Location findByLatitudeAndLongitude(BigDecimal latitude, BigDecimal Longitude);
+    Location findByLatitudeAndLongitude(Double latitude, Double Longitude);
 
 }

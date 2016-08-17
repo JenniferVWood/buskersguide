@@ -31,8 +31,8 @@ public class ReadWriteLocation {
     private Long locationId;
 
     @Column private String name;
-    @Column private Integer latitude;
-    @Column private Integer longitude;
+    @Column private Double latitude;
+    @Column private Double longitude;
 
 
 
@@ -62,22 +62,22 @@ public class ReadWriteLocation {
     }
 
     
-    public Integer getLatitude() {
+    public Double getLatitude() {
         return latitude;
     }
 
     
-    public void setLatitude(Integer latitude) {
+    public void setLatitude(Double latitude) {
         this.latitude = latitude;
     }
 
     
-    public Integer getLongitude() {
+    public Double getLongitude() {
         return longitude;
     }
 
     
-    public void setLongitude(Integer longitude) {
+    public void setLongitude(Double longitude) {
         this.longitude = longitude;
     }
 

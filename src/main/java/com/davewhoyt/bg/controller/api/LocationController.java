@@ -34,7 +34,8 @@ public class LocationController {
 
     @RequestMapping("list")
     public List<Location> listAll() {
-        return locationService.listAll();
+        List<Location> ret = locationService.listAll();
+        return ret;
     }
 
 
