@@ -10,8 +10,7 @@
     <!-- META DATA -->
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-</head>
-<body>
+ <body>
     <div class="masthead" role="banner">
         <div class="masthead-hd">
             <h1 class="hdg hdg_1 mix-hdg_extraBold"><a href="/">Buskers Guide</a>

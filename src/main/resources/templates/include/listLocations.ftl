@@ -16,5 +16,7 @@
 
 </div>
 
+<script src="/js/locationRatings.js"></script>
+
 
 [/#escape]

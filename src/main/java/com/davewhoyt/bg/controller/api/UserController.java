@@ -11,65 +11,27 @@ import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 /**
  * Created by david on 11/10/15.
  */
-@Controller
-@RequestMapping("/member")
+@Controller("apiUserController")
+@RequestMapping("/api/user")
 public class UserController implements Logging {
 
     private UserService userService;
     private JpaUserRepository userRepository;
 
-    /**
-     * Create a new user.
-     *
-     * @param userName name to use when creating the user
-     * @return forward request to <code>destination</code>.
-     */
-    @RequestMapping(value = "/create", method = RequestMethod.GET)
-    public String create(@RequestParam("userName") String userName,
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    @ResponseBody
+    public String create(@RequestBody Map<String, String> userParams,
                          HttpServletRequest request,
                          HttpServletResponse response) {
-        User newUser = userService.createUser(userName);
-        Cookie cookie = new Cookie("userName", newUser.getUserName());
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        return "redirect:/";
+        userService.createUser(userParams.get("userName"), userParams.get("password"));
+        return "OK";
     }
 
-
-    /**
-     *
-     * @param userName name to log in as
-     * @return forward request to <code>destination</code>.
-     */
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public String login(@RequestParam("userName") String userName,
-                        HttpServletRequest request,
-                        HttpServletResponse response) {
-        User newUser = userService.findByUserName(userName);
-        Cookie cookie = new Cookie("userName", newUser.getUserName());
-        cookie.setPath("/");
-        response.addCookie(cookie);
-        getLogger().debug("forwarding to index controller");
-        return "redirect:/";
-    }
-
-
-
-    /**
-     * List all the users in the system.  Only for development.
-     *
-     * @return all the users.
-     */
-    @RequestMapping("/all")
-    public @ResponseBody
-    Iterable<User> findAll(@CookieValue(value = "userName") String userName) {
-
-        return userRepository.findAll();
-    }
 
 
 
