@@ -1,7 +1,7 @@
 [#ftl]
 [#assign xhtmlCompliant = true in spring/]
 [#escape x as x?html]
-
+<fieldset>
 <p/>
 <b>Locations Near Me</b>
 <br />
@@ -17,6 +17,6 @@
 </div>
 
 <script src="/js/locationRatings.js"></script>
-
+</fieldset>
 
 [/#escape]

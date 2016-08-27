@@ -128,7 +128,6 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
 
         List<Location> ret = new ArrayList<>();
 
-        Object o = q.getResultList();
         List<Object[]> results = (List<Object[]>)q.getResultList();
 
         // TODO: this is very similar to the convenience method below.
@@ -162,7 +161,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
         List<Object[]> results = q.getResultList();
 
         // pretty sure we could do this with stream()...each()...map()...collect()
-        results.stream().forEach((record) -> {
+        results.forEach((record) -> {
             Location l = (Location)record[0];
             Double average = (Double)record[1];
             l.setAverageRating(average);

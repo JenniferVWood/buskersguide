@@ -1,0 +1,6 @@
+[#ftl]
+[#assign xhtmlCompliant = true in spring/]
+[#escape x as x?html]
+[#include "submitLocation.ftl" /]
+[#include "listLocations.ftl" /]
+[/#escape]

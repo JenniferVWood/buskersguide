@@ -14,8 +14,11 @@ import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
 import javax.sql.DataSource;
+import java.security.Principal;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Manage business logic around CRUD of Users.
@@ -30,7 +33,10 @@ public class UserService {
 
     @Autowired private AuthenticationManagerBuilder auth;
 
+    @Autowired
     private JpaUserRepository userRepository;
+
+    @Autowired InviteService inviteService;
 
     public User createUser(String userName, String password) {
         JdbcUserDetailsManager userDetailsService = new JdbcUserDetailsManager();
@@ -56,8 +62,18 @@ public class UserService {
         }
         return user;
     }
-    @Inject
-    public void setUserRepository(JpaUserRepository userRepository) {
-        this.userRepository = userRepository;
+
+
+    public Map<String, Object> getProfileData(Principal principal) {
+        Map<String, Object> userProfile = new HashMap<>();
+        User user = findByUserName(principal.getName());
+
+//        userProfile.put("user", user);
+        // TODO:  add list of ratings
+
+        userProfile.put("invites", inviteService.getRemainingInvitesFor(user));
+        return userProfile;
     }
+
+
 }

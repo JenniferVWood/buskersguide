@@ -23,7 +23,7 @@ var getGeoData = function(success, failureMessage) {
     } else {
         alert(failureMessage);
     }
-}
+};
 
 
 /**

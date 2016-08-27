@@ -1,11 +1,14 @@
 package com.davewhoyt.bg.config;
 
+import com.davewhoyt.bg.spring.PrincipalInjectingHandlerInterceptor;
 import freemarker.template.TemplateException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.ui.freemarker.FreeMarkerConfigurationFactory;
 import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer;
 import org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver;
@@ -38,4 +41,12 @@ public class MvcConfigurer extends WebMvcConfigurerAdapter {
 //        return result;
 //    }
 
+
+    @Autowired
+    PrincipalInjectingHandlerInterceptor piHandlerInterceptor;
+
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(piHandlerInterceptor);
+    }
 }

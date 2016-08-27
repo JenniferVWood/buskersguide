@@ -2,6 +2,7 @@ package com.davewhoyt.bg.controller.display;
 
 import com.davewhoyt.bg.common.Logging;
 import com.davewhoyt.bg.data.model.Location;
+import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

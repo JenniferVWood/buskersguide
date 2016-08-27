@@ -4,9 +4,7 @@ import com.davewhoyt.bg.common.Logging;
 
 import javax.persistence.*;
 
-/**
- * Created by david on 11/10/15.
- */
+
 @Entity(name = "users")
 public class User implements Logging {
 

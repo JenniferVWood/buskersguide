@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
         http
                 .authorizeRequests()
-                    .antMatchers("/user/**").hasAuthority("ADMIN")
+                    .antMatchers("/user/admin/**").hasAuthority("ADMIN")
                     .antMatchers("/api/user/**").hasAuthority("ADMIN")
                 .anyRequest().authenticated()
                     .and()
@@ -43,15 +43,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .permitAll();
         ;
     }
-//
-//    @Autowired
-//    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-//        auth
-//                .inMemoryAuthentication()
-//                .withUser("david").password("sup3rh@rdP@ssw0rd").roles("USER")
-//                .and().withUser("christine").password("ey30n@").roles("USER")
-//                ;
-//    }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {

@@ -84,6 +84,11 @@ create table comment (
 ;
 
 
+create table Invite (
+  inviteId text PRIMARY KEY,
+  userId bigint not null references users(userId),
+  grantedTo BIGINT references users(userId)
+);
 
 ----------------------------------------------------------------------------------------------
 --
