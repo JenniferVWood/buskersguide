@@ -1,9 +1,11 @@
 [#ftl]
 [#assign xhtmlCompliant = true in spring/]
 <div id="motd">
-    <p><i> This project is obviously a work in progress.  Send feedback/suggestions/rants to info@buskersguidetotheuniverse.org</i>
-        <br /><b><a onclick="toggleDiv('changelog')">Show/Hide change-log</a></b>
-        </p>
+    <p><i> This project is obviously a work in progress.  Send feedback/suggestions/rants to info@buskersguidetotheuniverse.org</i></p>
+    [#if principal.username == "preview"]
+    <p><bold>This user ("preview") will be retired soon.  Please navigate to the 'profile' page to send yourself an invite.</bold></p>
+    [/#if]
+        <p /><a onclick="toggleDiv('changelog')">[Show/Hide change-log]</a></p>
     <div id="changelog" style="display: none;">
         <ul>
             <li>8/27/16:  Added user-invite system.  Click on your username in the menu to view available invites.</li>
