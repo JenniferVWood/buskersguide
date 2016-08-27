@@ -8,7 +8,7 @@ import javax.persistence.*;
 public class Invite {
     @Id
     @GeneratedValue(generator="system-uuid")
-    @GenericGenerator(name="system-uuid", strategy = "uuid")
+    @GenericGenerator(name="system-uuid", strategy = "uuid2")
     @Column(name = "inviteid", nullable = false, unique = true)
     private String inviteId;
 

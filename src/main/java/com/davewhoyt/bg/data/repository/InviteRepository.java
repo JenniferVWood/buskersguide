@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface InviteRepository extends CrudRepository<Invite, Long> {
+public interface InviteRepository extends CrudRepository<Invite, String> {
 
     public List<Invite> findByUserId(Long userId);
 

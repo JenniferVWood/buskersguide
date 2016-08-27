@@ -23,7 +23,4 @@
         </fieldset>
 
 
-
-        <script src="/js/userAdmin.js">
-
 [/#escape]

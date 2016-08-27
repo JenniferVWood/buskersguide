@@ -5,4 +5,5 @@
     [#include "requestInvites.ftl" /]
     [#include "addUser.ftl" /]
 </div>
+<script src="/js/userAdmin.js" ></script>
 [/#escape]

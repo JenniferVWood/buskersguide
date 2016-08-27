@@ -1,0 +1,12 @@
+[#ftl]
+[#import "spring.ftl" as spring/]
+[#import "include/pageTemplate.ftl" as page]
+[#assign xhtmlCompliant = true in spring/]
+[#escape x as x?html]
+<script type="application/javascript" src="/js/user.js"></script>
+    [#if inviteValid == true]
+        [@page.pageTemplate "user/addInvitedUser.ftl" /]
+    [#else]
+        [@page.pageTemplate "user/invalidInvite.ftl" /]
+    [/#if]
+[/#escape]

@@ -2,7 +2,7 @@
 [#assign xhtmlCompliant = true in spring/]
 <fieldset>
     <div i="rateCurrenLocation">
-        <b>Rate your current location:</b>
+        <b>Rate your current location using your device's GPS:</b>
         <form id="locationForm" name="locationForm" onSubmit="return onSubmitLocation(this)">
             Name: <input id="name" name="name" type="text" size="32">
             <br/>Rating:
@@ -23,7 +23,7 @@
     </div>
     <hr width="30%" align="left"/>
     <div id="rateLocationManually">
-    <b>Rate a new location manually:</b>
+    <b>Rate a new location manually by entering coordinates:</b>
         <form id="manualLocationForm" name="manualLocationForm" onSubmit="return onSubmitLocationManual(this)">
             Name: <input id="name" name="name" type="text" size="32">
             <br/>Rating:

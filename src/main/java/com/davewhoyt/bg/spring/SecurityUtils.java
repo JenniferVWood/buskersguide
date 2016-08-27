@@ -1,9 +1,13 @@
 package com.davewhoyt.bg.spring;
 
+import com.davewhoyt.bg.data.model.User;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.Collection;
 
 public class SecurityUtils {
@@ -29,4 +33,25 @@ public class SecurityUtils {
         return  ret;
     }
 
+
+    public static void logInUser(User user) {
+        Authentication auth =
+                new UsernamePasswordAuthenticationToken(new org.springframework.security.core.userdetails.User(user.getUserName(), "", getAuthorities()), null, getAuthorities());
+
+        SecurityContextHolder.getContext().setAuthentication(auth);
+    }
+
+
+    private static Collection<GrantedAuthority> getAuthorities() {
+        //make everyone ROLE_USER
+        Collection<GrantedAuthority> grantedAuthorities = new ArrayList<GrantedAuthority>();
+        GrantedAuthority grantedAuthority = new GrantedAuthority() {
+            //anonymous inner type
+            public String getAuthority() {
+                return "ROLE_USER";
+            }
+        };
+        grantedAuthorities.add(grantedAuthority);
+        return grantedAuthorities;
+    }
 }

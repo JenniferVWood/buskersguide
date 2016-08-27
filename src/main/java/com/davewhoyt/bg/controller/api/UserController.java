@@ -48,8 +48,8 @@ public class UserController implements Logging {
     }
 
 
-    @RequestMapping(value = "/admin/requestInvites", method = RequestMethod.POST)
-    public @ResponseBody String generateInvites(@RequestParam String userName) {
+    @RequestMapping(value = "/admin/requestInvites/{userName}", method = RequestMethod.POST)
+    public @ResponseBody String generateInvites(@PathVariable String userName) {
         inviteService.generateInvitesFor(userService.findByUserName(userName));
         return "OK";
     }

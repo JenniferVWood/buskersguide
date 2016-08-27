@@ -3,7 +3,7 @@ var renderInvitesList = function(invites) {
     var html = '<table>';
     for (var i in invites) {
             html += '<tr>';
-            html += '<td>https://buskersguidetotheuniverse.org/invite/' + invites[i];
+            html += '<td>' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/invite/' + invites[i];
     }
     if (invites.length == 0) {
         html += "<tr><td>No remaining invites, sorry.</td></tr>"

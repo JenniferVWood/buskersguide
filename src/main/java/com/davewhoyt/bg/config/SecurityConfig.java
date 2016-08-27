@@ -32,7 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                     .antMatchers("/user/admin/**").hasAuthority("ADMIN")
-                    .antMatchers("/api/user/**").hasAuthority("ADMIN")
+                    .antMatchers("/invite/**").permitAll()
                 .anyRequest().authenticated()
                     .and()
                     .formLogin()
@@ -41,7 +41,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .and()
                     .logout()
                     .permitAll();
-        ;
+
     }
 
     @Override

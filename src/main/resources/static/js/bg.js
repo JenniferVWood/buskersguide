@@ -1,1 +1,3 @@
-var foo={"a": 1 };
+var toggleDiv = function(divId) {
+    $('#' + divId).toggle();
+};

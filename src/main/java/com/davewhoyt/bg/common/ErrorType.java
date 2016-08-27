@@ -6,12 +6,5 @@ package com.davewhoyt.bg.common;
  *
  */
 public enum ErrorType {
-    UNKNOWN,
-    USER_ALREADY_MADE_SUGGESTION,
-    TOO_MANY_VOTES,
-    CANNOT_VOTE_FOR_STAPLE,
-    SNACK_NOT_FOUND,
-    MISSING_VENDOR_LOCATION,
-    MISSING_VENDOR_NAME,
-    DUPLICATE_SUGGESTION;
+    UNKNOWN
 }
