@@ -1,9 +1,16 @@
 
 var renderInvitesList = function(invites) {
+    var baseUrl = window.location.protocol;
+    baseUrl += "//" + window.location.hostname;
+    if (window.location.port != undefined && window.location.port != '') {
+        baseUrl +=":" + window.location.port;
+    }
+    baseUrl += "/invite/";
+
     var html = '<table>';
     for (var i in invites) {
             html += '<tr>';
-            html += '<td>' + window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + '/invite/' + invites[i];
+            html += '<td>' + baseUrl + invites[i];
     }
     if (invites.length == 0) {
         html += "<tr><td>No remaining invites, sorry.</td></tr>"
