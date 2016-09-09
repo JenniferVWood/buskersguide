@@ -73,6 +73,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
     public List<Location> list(int offset, int limit) {
         String sql = BASE_QUERY
                 + GROUP_BY
+                + " order by distanceinmeters"
                 + " offset ?"
                 + " limit ?";
 
@@ -116,6 +117,7 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
                 "  inner join rating on location.locationid = rating.locationid\n" +
                 "\n" +
                 "group by location.locationid, near_me.distanceinmeters\n" +
+                "order by near_me.distanceinmeters" +
                 " offset ? limit ?"
                 ;
         Query q = entityManager.createNativeQuery(sql, RESULT_SET_MAPPING);
