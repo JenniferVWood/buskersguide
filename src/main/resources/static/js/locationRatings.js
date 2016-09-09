@@ -114,7 +114,7 @@ var fetchLocationsNearMe = function(position) {
     var radius = document.getElementById('searchRadius').value;
 
     if (typeof radius == "undefined" || radius == '' || radius == 0) {
-        radius = 2000;
+        radius = 10000;
     } else {
         radius = parseInt(radius) * 1000;
     }
