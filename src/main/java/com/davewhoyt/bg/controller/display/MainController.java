@@ -28,9 +28,7 @@ public class MainController implements Logging {
         List<Location> locations = locationService.listAll();
 
         model.addAttribute("locations", locations);
-        model.addAttribute("userName", principal.getName());
 
-        model.addAttribute("display", "index");
         return "index";
     }
 

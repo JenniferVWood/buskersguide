@@ -33,6 +33,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                     .antMatchers("/user/admin/**").hasAuthority("ADMIN")
                     .antMatchers("/invite/**").permitAll()
+                    .antMatchers("/").permitAll()
+                    .antMatchers("/js/**").permitAll()
                 .anyRequest().authenticated()
                     .and()
                     .formLogin()
