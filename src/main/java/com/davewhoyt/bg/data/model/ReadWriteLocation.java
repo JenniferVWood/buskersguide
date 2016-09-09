@@ -36,7 +36,7 @@ public class ReadWriteLocation {
 
 
 
-    public Double averageRating; // want this to be avg
+    private Double averageRating; // want this to be avg
 
     @Transient
     private Integer rating;

@@ -36,10 +36,10 @@ public class Location {
 
     /** calculated by some queries*/
     @Transient
-    public Double averageRating;
+    private Double averageRating;
 
     /** calculated by some queries*/
-    @Transient Double distanceInMeters;
+    @Transient private Double distanceInMeters;
 
 
     /** included in this model because a controller(!) uses this type to record a location+rating */

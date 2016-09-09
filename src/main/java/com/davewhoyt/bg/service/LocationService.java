@@ -36,7 +36,9 @@ public class LocationService {
      */
     @Transactional
     public Location createOrUpdate(Location location, User user) {
-        Location previousLocation =  locationRepository.findByLatitudeAndLongitude(location.getLatitude(), location.getLongitude());
+        double roundedLat = BigDecimal.valueOf(location.getLatitude()).setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+        double roundedLong = BigDecimal.valueOf(location.getLongitude()).setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+        Location previousLocation =  locationRepository.findByLatitudeAndLongitude(roundedLat, roundedLong);
 
         if (previousLocation != null) {
             Rating previousRating = ratingRepository.findByLocationAndUser(previousLocation, user);

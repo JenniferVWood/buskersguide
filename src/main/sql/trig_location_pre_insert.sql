@@ -12,9 +12,14 @@
 CREATE OR REPLACE FUNCTION fn_trig_location_pre_insert()
   RETURNS trigger AS
 $func$
+declare round_long float8;
+declare round_lat float8;
 BEGIN
 
-  NEW.geog := ST_MakePoint(NEW.longitude, NEW.latitude);
+  round_long := ROUND( NEW.longitude, 5);
+  round_lat := ROUND( NEW.latitude, 5);
+
+  NEW.geog := ST_MakePoint(round_long, round_lat);
 
   RETURN NEW;
 

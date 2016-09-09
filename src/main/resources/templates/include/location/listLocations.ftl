@@ -15,6 +15,9 @@
 <div id="locationsNearMeTableEntries">
 
 </div>
+    [#if principal.username == "anonymous"]
+        If you were logged in, you'd see a list of suitable busking locations near you...
+    [/#if]
 
 <script src="/js/locationRatings.js"></script>
 </fieldset>
