@@ -19,7 +19,8 @@ create TABLE if not exists users (
   userid BIGSERIAL not null PRIMARY KEY ,
   username text not null,
   password text,
-  enabled BOOLEAN
+  enabled BOOLEAN,
+  createdDateTime TIMESTAMP default now()
 );
 CREATE UNIQUE INDEX user_username_idx ON users (username);
 
@@ -33,7 +34,8 @@ create TABLE busker (
   buskerid BIGSERIAL PRIMARY KEY,
   userid bigint,
   name text not null,
-  FOREIGN KEY (userid) REFERENCES users (userid)
+  FOREIGN KEY (userid) REFERENCES users (userid),
+  createdDateTime TIMESTAMP default now()
 );
 
 
@@ -43,7 +45,8 @@ create TABLE location (
   longitude numeric,
   name text,
   longdescription TEXT,
-  geog geography(Point,4326)
+  geog geography(Point,4326),
+  createdDateTime TIMESTAMP default now()
 );
 CREATE UNIQUE INDEX location_latitude_longitude_idx ON location (latitude, longitude);
 
@@ -64,7 +67,8 @@ create TABLE rating (
   locationid bigint,
   "value" integer,
   ratingid BIGSERIAL,
-PRIMARY KEY (ratingid),
+  createdDateTime timestamp default now(),
+    PRIMARY KEY (ratingid),
 FOREIGN KEY (buskerid) REFERENCES busker (buskerid),
 FOREIGN KEY (userid) REFERENCES users (userid),
 FOREIGN KEY (locationid) REFERENCES location (locationid)
@@ -87,7 +91,8 @@ create table comment (
 create table Invite (
   inviteId text PRIMARY KEY,
   userId bigint not null references users(userId),
-  grantedTo BIGINT references users(userId)
+  grantedTo BIGINT references users(userId),
+  createdDateTime timestamp default now()
 );
 
 ----------------------------------------------------------------------------------------------
