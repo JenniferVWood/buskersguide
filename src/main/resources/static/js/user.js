@@ -2,7 +2,7 @@
 var renderInvitesList = function(invites) {
     var baseUrl = window.location.protocol;
     baseUrl += "//" + window.location.hostname;
-    if (window.location.port != undefined && window.location.port != '') {
+    if ((typeof window.location.port != "undefined") && window.location.port != '') {
         baseUrl +=":" + window.location.port;
     }
     baseUrl += "/invite/";
