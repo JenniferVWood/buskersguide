@@ -16,8 +16,8 @@ declare round_long float8;
 declare round_lat float8;
 BEGIN
 
-  round_long := ROUND( NEW.longitude, 5);
-  round_lat := ROUND( NEW.latitude, 5);
+  round_long := ROUND( NEW.longitude, 4);
+  round_lat := ROUND( NEW.latitude, 4);
 
   NEW.geog := ST_MakePoint(round_long, round_lat);
 
