@@ -12,57 +12,57 @@
     <body>
     <table>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 <div class="masthead" role="banner">
                     <div class="masthead-hd">
                         <h1>Buskers Guide to the Universe</h1>
                     </div>
                 </div>
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "menu.ftl" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "welcome.ftl" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "motd.ftl" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "${topLevelTemplate}" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "changelog.ftl" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
         <tr>
-            <td width="20%"></td>
-            <td width="60%">
+            <td width="5%"></td>
+            <td width="90%">
                 [#include "footer.ftl" /]
             </td>
-            <td width="20%"></td>
+            <td width="5%"></td>
         </tr>
     </table>
     </body>
