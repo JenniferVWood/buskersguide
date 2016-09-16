@@ -47,8 +47,8 @@ public class LocationController {
                                    @PathVariable("radiusInMeters") Integer radiusInMeters, Principal principal) {
 
 
-        if (principal instanceof AnonymousUser) {
-            return locationService.findNearLatitudeAndLongitude(BigDecimal.valueOf(44.944), BigDecimal.valueOf(-93.268), 1000, 0, 20);
+        if (principal == null || principal instanceof AnonymousUser) {
+            return locationService.findNearLatitudeAndLongitude(BigDecimal.valueOf(44.944), BigDecimal.valueOf(-93.268), 10000, 0, 20);
         } else {
             return locationService.findNearLatitudeAndLongitude(
                     BigDecimal.valueOf(latitude),
