@@ -58,6 +58,15 @@ public class InviteService {
     }
 
 
+    public Invite getInviteForPreviewUser() {
+        User previewUser = userService.findByUserName("preview");
+        List<Invite> invites = inviteRepo.findUnusedByUserId(previewUser.getUserId());
+        if (invites.size() > 0) {
+            return invites.get(0);
+        }
+        return null;
+    }
+
     public void setGrantedTo(String inviteId, User user) {
         Invite invite = inviteRepo.findOne(inviteId);
         invite.setGrantedTo(user.getUserId());

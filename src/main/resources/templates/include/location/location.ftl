@@ -6,7 +6,8 @@
         [#include "submitLocation.ftl" /]
     [#else]
     <fieldset>
-        <h3><a href="/invite/none">Sign up</a> or <a href="/login">log in</a> to submit new locations.</h3>
+        <h3>Want to help?</h3>
+        <p><a href="/invite/guest">Sign up</a> or <a href="/login">log in</a> to rate new locations!</p>
     </fieldset>
     [/#if]
 [/#escape]

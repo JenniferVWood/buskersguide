@@ -10,17 +10,61 @@
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <body>
-    <div class="masthead" role="banner">
-        <div class="masthead-hd">
-            <p class="masthead-hd-sub">Buskers Guide to the Universe</p>
-        </div>
-    </div>
-        [#include "menu.ftl" /]
-    <hr width="30"/>
-        [#include "motd.ftl" /]
-
-        [#include "${topLevelTemplate}" /]
-
+    <table>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                <div class="masthead" role="banner">
+                    <div class="masthead-hd">
+                        <h1>Buskers Guide to the Universe</h1>
+                    </div>
+                </div>
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "menu.ftl" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "welcome.ftl" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "motd.ftl" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "${topLevelTemplate}" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "changelog.ftl" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+        <tr>
+            <td width="20%"></td>
+            <td width="60%">
+                [#include "footer.ftl" /]
+            </td>
+            <td width="20%"></td>
+        </tr>
+    </table>
     </body>
     </html>
     <script src="/js/bg.js"></script>

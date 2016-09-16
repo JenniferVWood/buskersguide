@@ -1,6 +1,7 @@
 package com.davewhoyt.bg.controller.display;
 
 import com.davewhoyt.bg.common.exception.InvalidInviteException;
+import com.davewhoyt.bg.data.model.Invite;
 import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.service.InviteService;
 import com.davewhoyt.bg.spring.SecurityUtils;
@@ -22,7 +23,11 @@ public class InviteController {
     @RequestMapping("{inviteId}")
     public String renderAddInvitedUser(@PathVariable String inviteId, Model model) {
 
-        // TODO: validate invite
+        if ("guest".equalsIgnoreCase(inviteId)) {
+            Invite guestInvite = inviteService.getInviteForPreviewUser();
+            inviteId = guestInvite == null? "bzzzt" : guestInvite.getInviteId();
+        }
+
         model.addAttribute("inviteId", inviteId);
         model.addAttribute("inviteValid", inviteService.validateInvite(inviteId));
         return "/invitedUser";

@@ -4,6 +4,7 @@ import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.service.LocationService;
 import com.davewhoyt.bg.service.UserService;
+import com.davewhoyt.bg.spring.AnonymousUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -43,12 +44,17 @@ public class LocationController {
     @ResponseBody
     public List<Location> listNear(@PathVariable("latitude") Double latitude,
                                    @PathVariable("longitude") Double longitude,
-                                   @PathVariable("radiusInMeters") Integer radiusInMeters) {
+                                   @PathVariable("radiusInMeters") Integer radiusInMeters, Principal principal) {
 
-        return locationService.findNearLatitudeAndLongitude(
-                BigDecimal.valueOf(latitude),
-                BigDecimal.valueOf(longitude),
-                radiusInMeters, 0, 100);
+
+        if (principal instanceof AnonymousUser) {
+            return locationService.findNearLatitudeAndLongitude(BigDecimal.valueOf(44.944), BigDecimal.valueOf(-93.268), 1000, 0, 20);
+        } else {
+            return locationService.findNearLatitudeAndLongitude(
+                    BigDecimal.valueOf(latitude),
+                    BigDecimal.valueOf(longitude),
+                    radiusInMeters, 0, 100);
+        }
     }
 
 
