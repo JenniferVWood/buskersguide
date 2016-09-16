@@ -1,6 +1,9 @@
 <p /><a onclick="toggleDiv('changelog')">[Show/Hide change-log]</a></p>
 <div id="changelog" style="display: none;">
     <ul>
+        <li>9/15/16:  Let anonymous users see a subset of the locations list.</li>
+        <li>9/15/16:  Simplified user sign-up.</li>
+        <li>9/15/16:  Added a bare minimum of styling.</li>
         <li>9/08/16:  Sort locations by distance (user-selectable in the future, but for now...)</li>
         <li>9/08/16:  Show anonymous users a teaser page...</li>
         <li>8/27/16:  Added user-invite system.  Click on your username in the menu to view available invites.</li>
