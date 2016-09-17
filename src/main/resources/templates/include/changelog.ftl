@@ -1,6 +1,7 @@
 <p /><a onclick="toggleDiv('changelog')">[Show/Hide change-log]</a></p>
 <div id="changelog" style="display: none;">
     <ul>
+        <li>9/15/16:  Show preview of 'details' screen.</li>
         <li>9/15/16:  Let anonymous users see a subset of the locations list.</li>
         <li>9/15/16:  Simplified user sign-up.</li>
         <li>9/15/16:  Added a bare minimum of styling.</li>

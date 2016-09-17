@@ -32,13 +32,6 @@
         <tr>
             <td width="5%"></td>
             <td width="90%">
-                [#include "welcome.ftl" /]
-            </td>
-            <td width="5%"></td>
-        </tr>
-        <tr>
-            <td width="5%"></td>
-            <td width="90%">
                 [#include "motd.ftl" /]
             </td>
             <td width="5%"></td>

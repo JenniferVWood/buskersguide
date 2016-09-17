@@ -1,6 +1,8 @@
 [#ftl]
 [#assign xhtmlCompliant = true in spring/]
 [#escape x as x?html]
+    [#include "../welcome.ftl" /]
+
 <div class="content" role="addInvitedUser">
     <fieldset>
         <p>Let's get you set up with a new username and password.</p>

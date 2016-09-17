@@ -5,11 +5,11 @@ import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.repository.LocationRepository;
 import com.davewhoyt.bg.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.security.Principal;
 import java.util.List;
@@ -19,7 +19,7 @@ import java.util.List;
  */
 @Controller("locationViewController")
 @RequestMapping("/render/location")
-public class LocationController {
+public class LocationController implements Logging {
     @Autowired
     LocationService locationService;
 
@@ -31,11 +31,9 @@ public class LocationController {
             , @PathVariable("locationId") Long locationId) {
         Location location = locationRepository.findByLocationId(locationId);
 
-        model.addAttribute("userName", principal.getName());
-        model.addAttribute("display", "detail");
         model.addAttribute("location", location);
 
-        return "/index";
+        return "/locationDetails";
     }
 
 }

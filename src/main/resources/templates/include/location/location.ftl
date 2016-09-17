@@ -1,6 +1,7 @@
 [#ftl]
 [#assign xhtmlCompliant = true in spring/]
 [#escape x as x?html]
+    [#include "../welcome.ftl" /]
     [#include "listLocations.ftl" /]
     [#if principal.username != "anonymous"]
         [#include "submitLocation.ftl" /]

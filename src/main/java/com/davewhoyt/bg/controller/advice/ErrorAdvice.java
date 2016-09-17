@@ -3,6 +3,7 @@ package com.davewhoyt.bg.controller.advice;
 import com.davewhoyt.bg.common.Logging;
 import com.davewhoyt.bg.common.exception.NoSuchUserException;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.web.util.ThrowableAnalyzer;
 import org.springframework.web.bind.ServletRequestBindingException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -20,25 +21,13 @@ import javax.servlet.http.HttpServletResponse;
 @ControllerAdvice
 public class ErrorAdvice implements Logging {
 
-    @ExceptionHandler(value = RestClientException.class)
+    @ExceptionHandler(value = Throwable.class)
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public ModelAndView handleRuntimeException(RestClientException restException) {
-        getLogger().warn("An error was encountered fetching rest data: ", restException);
-        return new ModelAndView("error", "restException", restException);
+    public ModelAndView handleRuntimeException(Throwable exception) {
+        getLogger().error("An error was encountered fetching rest data: ", exception);
+        return new ModelAndView("error", "restException", exception);
     }
 
 
-//    @ExceptionHandler(value = {ServletRequestBindingException.class, NoSuchUserException.class})
-//    public ModelAndView notLoggedIn(Exception e, HttpServletRequest request) {
-//        if (e instanceof NoSuchUserException || e.getMessage().toLowerCase().contains("missing cookie")) {
-//            return new ModelAndView("login");
-//        }
-//        throw new RuntimeException(e);
-//    }
 
-//    @ExceptionHandler(value = SnaFooException.class)
-//    public @ResponseBody String handleSnaFooException(SnaFooException se, HttpServletResponse response) {
-//        response.setStatus(500);
-//        return se.snaFooErrorType.toString();
-//    }
 }

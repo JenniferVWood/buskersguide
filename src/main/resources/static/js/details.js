@@ -9,15 +9,7 @@ var detailsPage = function(locationId) {
 };
 
 var buildDetailsPage = function(o) {
-    renderLocationName(o.name);
     renderComments();
-    renderLongDescription(o.name);
-};
-
-
-var renderLongDescription = function(text) {
-    var longDesc = $('#details-long-description');
-    longDesc.html(text);
 };
 
 
@@ -36,11 +28,6 @@ var renderComments = function(commentsList) {
         html += "</table>";
     }
     $('#location-name').html(html);
-};
-
-
-var renderLocationName = function(name) {
-  $('#location-name').html(name);
 };
 
 
