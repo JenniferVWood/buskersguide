@@ -33,6 +33,13 @@ public class LocationController {
         return "/";
     }
 
+//    @RequestMapping(value = "rate/{locationId}/{rating}", method = RequestMethod.POST)
+//    public String rateExisting(Principal principal, @PathVariable Long locationId, @PathVariable Integer rating) {
+//        User user = userService.findByUserName(principal.getName());
+//        locationService.updateRating(locationId, rating, user);
+//        return "/";
+//    }
+
     @RequestMapping("list")
     public List<Location> listAll() {
         List<Location> ret = locationService.listAll();
@@ -47,14 +54,10 @@ public class LocationController {
                                    @PathVariable("radiusInMeters") Integer radiusInMeters, Principal principal) {
 
 
-        if (principal == null || principal instanceof AnonymousUser) {
-            return locationService.findNearLatitudeAndLongitude(BigDecimal.valueOf(44.944), BigDecimal.valueOf(-93.268), 10000, 0, 20);
-        } else {
-            return locationService.findNearLatitudeAndLongitude(
-                    BigDecimal.valueOf(latitude),
-                    BigDecimal.valueOf(longitude),
-                    radiusInMeters, 0, 100);
-        }
+        return locationService.findNearLatitudeAndLongitude(
+                BigDecimal.valueOf(latitude),
+                BigDecimal.valueOf(longitude),
+                radiusInMeters, 0, 100);
     }
 
 
