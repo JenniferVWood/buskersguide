@@ -1,7 +1,7 @@
 <p /><a onclick="toggleDiv('changelog')">[Show/Hide change-log]</a></p>
 <div id="changelog" style="display: none;">
     <ul>
-        <li>11/19/16: Opened up the entire database to un-logged in users.  Ya still gotta log in to add ratings though.</li>
+        <li>11/19/16: Opened up the entire locations/ratings list to non-logged in users.  Log in still required to add locations/ratings.</li>
         <li>9/15/16:  Show preview of 'details' screen.</li>
         <li>9/15/16:  Let anonymous users see a subset of the locations list.</li>
         <li>9/15/16:  Simplified user sign-up.</li>
