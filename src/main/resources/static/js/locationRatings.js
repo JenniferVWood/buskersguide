@@ -26,6 +26,36 @@ var getGeoData = function(success, failureMessage) {
 };
 
 
+
+
+
+var addRatingToExistingLocation = function() {
+    var rating = $('#addRatingToExisting select[name=rating]').val();
+    var locationId = $('#addRatingToExisting input[name=locationId]').val();
+
+    var that = this;
+    $.ajax({
+        type: "POST",
+        url: "/api/location/rate/" + locationId + "/" + rating,
+        // data: JSON.stringify(locationData),
+        contentType: "application/json",
+        success: function() {
+            that.reloadCurrentPage();
+        },
+        error: function(e) {
+            alert(e.responseText);
+        }
+    });
+
+    return false;
+}
+
+
+
+
+
+
+
 /**
  * Click event handler for createLocation button.
  *
@@ -83,7 +113,7 @@ var sendSaveLocationRequest = function(locationData) {
         data: JSON.stringify(locationData),
         contentType: "application/json",
         success: function() {
-            that.onCreateLocationSuccess();
+            that.reloadCurrentPage();
         },
         error: function(e) {
             alert(e.responseText);
@@ -98,7 +128,7 @@ var sendSaveLocationRequest = function(locationData) {
 /**
  * part 3 of 3 functions for creating a new location.
  */
-var onCreateLocationSuccess = function() {
+var reloadCurrentPage = function() {
     location.reload(true);
 };
 
@@ -111,22 +141,27 @@ var onRequestLocationsNearMe = function() {
 
 
 var fetchLocationsNearMe = function(position) {
-    var radius = document.getElementById('searchRadius').value;
+    // we're still componentizing this page.  For now, if you're on the details page, we don't need this code, but
+    // it will get run.  Cludge time!  :-)
+    var radiusElement = document.getElementById('searchRadius');
+    if (radiusElement != undefined) {
+        var radius = radiusElement.value;
 
-    if (typeof radius == "undefined" || radius == '' || radius == 0) {
-        radius = 10000;
-    } else {
-        radius = parseInt(radius) * 1000;
+        if (typeof radius == "undefined" || radius == '' || radius == 0) {
+            radius = 10000;
+        } else {
+            radius = parseInt(radius) * 1000;
+        }
+
+        var coords = position.coords
+        $.ajax({
+            dataType: "json",
+            url: "/api/location/near/" + coords.latitude + "/" + coords.longitude + "/" + radius,
+            data: undefined,
+            success: renderLocationsNearMe
+        });
+        return false;
     }
-
-    var coords = position.coords
-    $.ajax({
-        dataType: "json",
-        url: "/api/location/near/" + coords.latitude + "/" + coords.longitude + "/" + radius,
-        data: undefined,
-        success: renderLocationsNearMe
-    });
-    return false;
 };
 
 /**
@@ -141,10 +176,10 @@ var renderLocationsNearMe = function(o) {
     var html = '   <table> <tr> <th>name</th> <th>rating</th>  <th>distance</th></tr>';
     for(var i in o){
         var distance = (Math.abs(o[i].distanceInMeters) / 1000).toFixed(2);
-
+        var ratingWholeNum = Math.round(o[i].averageRating);
         html += '<tr>';
         html += '<td> <a href="/render/location/detail/' + o[i].locationId + '">' + o[i].name + '</a></td>';
-        html += '<td>' + o[i].averageRating + '</td>';
+        html += '<td>' + ratingWholeNum + '</td>';
         html += '<td><a href="https://www.google.com/maps/place/' + o[i].latitude + ',' +o[i].longitude + '"> + ' + distance + ' km</a></td>';
         html += '</tr>';
     }

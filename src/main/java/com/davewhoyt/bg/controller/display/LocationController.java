@@ -2,6 +2,7 @@ package com.davewhoyt.bg.controller.display;
 
 import com.davewhoyt.bg.common.Logging;
 import com.davewhoyt.bg.data.model.Location;
+import com.davewhoyt.bg.data.repository.CustomLocationRepository;
 import com.davewhoyt.bg.data.repository.LocationRepository;
 import com.davewhoyt.bg.service.LocationService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,13 +24,11 @@ public class LocationController implements Logging {
     @Autowired
     LocationService locationService;
 
-    @Autowired
-    LocationRepository locationRepository;
 
     @RequestMapping(value = "detail/{locationId}")
     public String renderDetailsPage(Principal principal, Model model
             , @PathVariable("locationId") Long locationId) {
-        Location location = locationRepository.findByLocationId(locationId);
+        Location location = locationService.findByLocationId(locationId);
 
         model.addAttribute("location", location);
 

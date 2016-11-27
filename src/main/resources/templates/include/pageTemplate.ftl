@@ -9,6 +9,8 @@
         <!-- META DATA -->
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <script type="application/javascript" src="/js/user.js"></script>
+        <script type="application/javascript" src="/js/locationRatings.js"></script>
     <body>
     <table>
         <tr>

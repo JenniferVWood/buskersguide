@@ -33,12 +33,12 @@ public class LocationController {
         return "/";
     }
 
-//    @RequestMapping(value = "rate/{locationId}/{rating}", method = RequestMethod.POST)
-//    public String rateExisting(Principal principal, @PathVariable Long locationId, @PathVariable Integer rating) {
-//        User user = userService.findByUserName(principal.getName());
-//        locationService.updateRating(locationId, rating, user);
-//        return "/";
-//    }
+    @RequestMapping(value = "rate/{locationId}/{rating}", method = RequestMethod.POST)
+    public String rateExisting(Principal principal, @PathVariable Long locationId, @PathVariable Integer rating) {
+        User user = userService.findByUserName(principal.getName());
+        locationService.updateRating(locationId, rating, user);
+        return "/";
+    }
 
     @RequestMapping("list")
     public List<Location> listAll() {

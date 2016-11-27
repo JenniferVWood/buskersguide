@@ -155,6 +155,9 @@ public class CustomJpaLocationRepository implements CustomLocationRepository {
 
         Location location = (Location) results.get(0)[0];
         location.setAverageRating((Double) results.get(0)[1]);
+
+        Double distanceInMeters = (Double)results.get(0)[2];
+        location.setDistanceInMeters(distanceInMeters);
         return location;
     }
 

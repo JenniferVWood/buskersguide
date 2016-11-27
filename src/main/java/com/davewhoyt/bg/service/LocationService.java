@@ -3,6 +3,7 @@ package com.davewhoyt.bg.service;
 import com.davewhoyt.bg.data.model.Location;
 import com.davewhoyt.bg.data.model.User;
 import com.davewhoyt.bg.data.model.Rating;
+import com.davewhoyt.bg.data.repository.LocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.CustomJpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaLocationRepository;
 import com.davewhoyt.bg.data.repository.jpa.JpaRatingRepository;
@@ -86,6 +87,18 @@ public class LocationService {
         return customLocationRepository.findNearLatitudeAndLongitude(latitude,longitude,radiusInMeters,offset,limit);
     }
 
+
+    @Transactional
+    public void updateRating(Long locationId, Integer ratingValue, User user) {
+        Location location = customLocationRepository.findByLocationId(locationId);
+        Rating rating = new Rating();
+        rating.setLocation(location);
+        rating.setValue(ratingValue);
+        rating.setUser(user);
+        ratingRepository.save(rating);
+    }
+
+
     @Inject
     public void setLocationRepository(JpaLocationRepository r) {
         this.locationRepository = r;
@@ -106,4 +119,5 @@ public class LocationService {
     public void setCustomLocationRepository(CustomJpaLocationRepository customLocationRepository) {
         this.customLocationRepository = customLocationRepository;
     }
+
 }
